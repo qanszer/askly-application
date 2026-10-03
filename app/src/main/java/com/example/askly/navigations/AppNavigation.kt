@@ -5,9 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.askly.models.ClassroomModel
-import com.example.askly.models.ViewModelClassroom
-import com.example.askly.models.ViewModelQuestion
+import com.example.askly.models.AsklyViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen
 import com.example.askly.screens.MenuScreen
@@ -19,8 +17,7 @@ import com.example.askly.screens.StudentDashboardScreen
 @Composable
 fun AppNavigation () {
     val navrouting = rememberNavController()
-    val viewModelClass : ViewModelClassroom = viewModel()
-    val viewModelQuestion : ViewModelQuestion = viewModel()
+    val asklyViewModel : AsklyViewModel = viewModel()
 
     NavHost(
         navController = navrouting,
@@ -32,13 +29,13 @@ fun AppNavigation () {
 
 //      Student Screens
         composable("studentDashboard") {
-            StudentDashboardScreen(navrouting, viewModelClass)
+            StudentDashboardScreen(navrouting, asklyViewModel)
         }
         composable("studentJoin") {
             JoinClassroomScreen(navrouting)
         }
         composable("studentClass") {
-            StudentClassScreen(navrouting, viewModelQuestion)
+            StudentClassScreen(navrouting, asklyViewModel)
         }
 
 //      Professor Screens
