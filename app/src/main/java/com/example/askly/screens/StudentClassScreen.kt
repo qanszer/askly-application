@@ -39,15 +39,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.askly.models.QuestionModel
-import com.example.askly.models.ViewModelQuestion
+import com.example.askly.models.AsklyViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StudentClassScreen (
     navController: NavController,
-    questionModel: ViewModelQuestion
+    asklyViewModel: AsklyViewModel
 ) {
     val context = LocalContext.current;
 
@@ -133,7 +132,7 @@ fun StudentClassScreen (
                 ),
                 onClick = {
                     if (questionText.isNotBlank()) {
-                        questionModel.addQuestion(questionText)
+                        asklyViewModel.addQuestion(questionText)
                         questionText = ""
                     }
                 }
@@ -166,7 +165,7 @@ fun StudentClassScreen (
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    items(questionModel.questionList) {
+                    items(asklyViewModel.questionList) {
                             questionList ->
 
                         var isEditing by remember(questionList.questionId) {
@@ -218,7 +217,7 @@ fun StudentClassScreen (
                                             ),
                                             onClick = {
                                                 if (editedText.isNotBlank()) {
-                                                    questionModel.updateQuestion(
+                                                    asklyViewModel.updateQuestion(
                                                         questionList.questionId,
                                                         editedText
                                                     )
@@ -278,7 +277,7 @@ fun StudentClassScreen (
                                                     contentColor = Color.Red
                                                 ),
                                                 onClick = {
-                                                    questionModel.deleteQuestion(questionList.questionId)
+                                                    asklyViewModel.deleteQuestion(questionList.questionId)
                                                 }
                                             ) {
                                                 Text(
