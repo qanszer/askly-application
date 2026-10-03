@@ -5,11 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class ViewModelQuestion : ViewModel() {
+class AsklyViewModel : ViewModel() {
     var questionList by mutableStateOf(
         value = listOf(
             QuestionModel(
                 questionId = 1,
+                classroomId = 1,
+                authorId = 1,
                 questionText = "Test question?"
             )
         )
@@ -18,6 +20,8 @@ class ViewModelQuestion : ViewModel() {
     fun addQuestion (questionText: String) {
         val newQuestion = QuestionModel(
             questionId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
+            classroomId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
+            authorId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
             questionText = questionText
         )
         questionList += newQuestion
@@ -51,4 +55,21 @@ class ViewModelQuestion : ViewModel() {
             }
         }
     }
+
+    var classroomList by mutableStateOf(
+        value = listOf(
+            ClassroomModel(
+                classroomId = 1,
+                joinCode = "ASDF",
+                classroomName = "Mobile Development",
+                ownerId = 1
+            ),
+            ClassroomModel(
+                classroomId = 2,
+                joinCode = "QWER",
+                classroomName = "Nihongo",
+                ownerId = 1
+            )
+        )
+    )
 }

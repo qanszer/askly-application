@@ -1,9 +1,9 @@
 package com.example.askly.models
 
 data class ClassroomModel (
-    val classId: Int,
+    val classroomId: Int = 0,
     val joinCode: String,
-    val className: String,
-    val profId: Int,
-    val isActive: Boolean
+    val classroomName: String,
+    val ownerId: Int,
+    val createdAt: Long = System.currentTimeMillis()
 )
