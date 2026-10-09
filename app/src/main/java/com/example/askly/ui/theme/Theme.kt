@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -77,7 +78,7 @@ fun AsklyTheme(
 }
 
 @Composable
-fun QuestionMarkIcon(modifier: Modifier = Modifier) {
+fun QuestionMarkIcon(modifier: Modifier = Modifier, fontSize: TextUnit = 20.sp) {
     Box(
         modifier = modifier
             .size(30.dp)
@@ -90,7 +91,7 @@ fun QuestionMarkIcon(modifier: Modifier = Modifier) {
         Text(
             text = "?",
             color = Color.White,
-            fontSize = 20.sp,
+            fontSize = fontSize,
             fontWeight = FontWeight.Bold
         )
     }

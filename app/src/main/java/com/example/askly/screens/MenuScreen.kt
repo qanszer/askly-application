@@ -71,7 +71,7 @@ fun MenuScreen(navController: NavController) {
             }
             Icon(
                 imageVector = Icons.Outlined.Settings,
-                contentDescription = "Active Notifications",
+                contentDescription = "Askly Logo Icon",
                 tint = MaterialTheme.colorScheme.onBackground
             )
         }
@@ -86,7 +86,7 @@ fun MenuScreen(navController: NavController) {
         ) {
             Icon(
                 imageVector = Icons.Outlined.Forum,
-                contentDescription = "Active Notifications",
+                contentDescription = "Menu Screen Icon",
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.size(90.dp)
             )
@@ -145,7 +145,7 @@ fun MenuScreen(navController: NavController) {
                 containerColor = Color.White,
                 contentColor = Color.Black
             ),
-            onClick = { navController.navigate("professorDashboard") }
+            onClick = { navController.navigate("signIn") }
         ) {
             Text(
                 text = "I'm a professor",
