@@ -80,17 +80,17 @@ fun AsklyTheme(
 fun QuestionMarkIcon(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .size(28.dp)
+            .size(30.dp)
             .background(
                 color = Color.Black,
-                shape = RoundedCornerShape(6.dp)
+                shape = RoundedCornerShape(8.dp)
             ),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = "?",
             color = Color.White,
-            fontSize = 18.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
     }
