@@ -12,10 +12,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Forum
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Forum
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
@@ -77,9 +80,17 @@ fun MenuScreen(navController: NavController) {
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(22.dp)
-                .padding(top = 50.dp),
-            verticalArrangement = Arrangement.Top,
+                .padding(bottom = 50.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Icon(
+                imageVector = Icons.Outlined.Forum,
+                contentDescription = "Active Notifications",
+                tint = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.size(90.dp)
+            )
+            Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = "Ask without",
                 style = MaterialTheme.typography.displayMedium.copy(
@@ -87,6 +98,7 @@ fun MenuScreen(navController: NavController) {
                 ),
                 color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.Normal,
+                textAlign = TextAlign.Center
             )
             Text(
                 text = "raising a hand.",
@@ -95,6 +107,7 @@ fun MenuScreen(navController: NavController) {
                 ),
                 color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
@@ -102,12 +115,13 @@ fun MenuScreen(navController: NavController) {
                         "Your professor sees the question,\n" +
                         "but not your name.",
                 fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
             )
         }
         Button(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 12.dp)
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Black,
@@ -117,14 +131,14 @@ fun MenuScreen(navController: NavController) {
         ) {
             Text(
                 text = "I'm a student",
-                style = MaterialTheme.typography.titleLarge,
+                fontSize = 18.sp,
                 modifier = Modifier.padding(6.dp)
             )
         }
         Spacer( modifier = Modifier.height(8.dp))
         Button(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 12.dp)
                 .fillMaxWidth(),
             border = BorderStroke(width = 1.dp, color = Color.Black),
             colors = ButtonDefaults.buttonColors(
@@ -135,7 +149,7 @@ fun MenuScreen(navController: NavController) {
         ) {
             Text(
                 text = "I'm a professor",
-                style = MaterialTheme.typography.titleLarge,
+                fontSize = 18.sp,
                 modifier = Modifier.padding(6.dp)
             )
         }
