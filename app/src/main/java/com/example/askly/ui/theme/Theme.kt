@@ -2,35 +2,54 @@ package com.example.askly.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    background = DarkBackground,
+    onBackground = DarkForeground,
+    surface = DarkCard,
+    onSurface = DarkCardForeground,
+    primary = DarkPrimary,
+    onPrimary = DarkPrimaryForeground,
+    surfaceVariant = DarkMuted,
+    onSurfaceVariant = DarkMutedForeground,
+    secondary = DarkAccent,
+    onSecondary = DarkAccentForeground,
+    outline = DarkBorder,
+    outlineVariant = DarkRing
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    background = LightBackground,
+    onBackground = LightForeground,
+    surface = LightCard,
+    onSurface = LightCardForeground,
+    primary = LightPrimary,
+    onPrimary = LightPrimaryForeground,
+    surfaceVariant = LightMuted,
+    onSurfaceVariant = LightMutedForeground,
+    secondary = LightAccent,
+    onSecondary = LightAccentForeground,
+    outline = LightBorder,
+    outlineVariant = LightRing
 )
 
 @Composable
@@ -55,4 +74,24 @@ fun AsklyTheme(
         typography = Typography,
         content = content
     )
+}
+
+@Composable
+fun QuestionMarkIcon(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .size(28.dp)
+            .background(
+                color = Color.Black,
+                shape = RoundedCornerShape(6.dp)
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "?",
+            color = Color.White,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
