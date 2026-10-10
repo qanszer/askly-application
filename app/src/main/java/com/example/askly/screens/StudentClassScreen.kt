@@ -100,7 +100,8 @@ fun StudentClassScreen (
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CompositionLocalProvider(
-                    LocalMinimumInteractiveComponentEnforcement provides false) {
+                    LocalMinimumInteractiveComponentEnforcement provides false
+                ) {
                     IconButton(
                         onClick = {
                             navController.popBackStack()
@@ -205,7 +206,7 @@ fun StudentClassScreen (
                             containerColor = MaterialTheme.colorScheme.background,
                             contentColor = Color.Black
                         ),
-                        onClick = {  },
+                        onClick = { },
                         contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
                     ) {
                         Icon(
@@ -233,7 +234,7 @@ fun StudentClassScreen (
                             containerColor = MaterialTheme.colorScheme.background,
                             contentColor = Color.Black
                         ),
-                        onClick = {  },
+                        onClick = { },
                         contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
                     ) {
                         Text(
@@ -252,8 +253,7 @@ fun StudentClassScreen (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(asklyViewModel.questionList) {
-                        questionList ->
+                items(asklyViewModel.questionList) { questionList ->
 
                     var isEditing by remember(questionList.questionId) {
                         mutableStateOf(false)
@@ -265,8 +265,10 @@ fun StudentClassScreen (
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(24.dp),
-                        border = BorderStroke(1.dp,
-                            MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
+                        border = BorderStroke(
+                            1.dp,
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
+                        ),
                         color = MaterialTheme.colorScheme.surface
                     ) {
                         Column(
@@ -287,7 +289,7 @@ fun StudentClassScreen (
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Button(
-                                    onClick = {  },
+                                    onClick = { },
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = Color.Transparent,
                                         contentColor = MaterialTheme.colorScheme.onSurfaceVariant
@@ -308,9 +310,10 @@ fun StudentClassScreen (
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     CompositionLocalProvider(
-                                        LocalMinimumInteractiveComponentEnforcement provides false) {
+                                        LocalMinimumInteractiveComponentEnforcement provides false
+                                    ) {
                                         IconButton(
-                                            onClick = {  },
+                                            onClick = { },
                                             modifier = Modifier.size(48.dp)
                                         ) {
                                             Icon(
@@ -322,7 +325,8 @@ fun StudentClassScreen (
                                         }
                                     }
                                     CompositionLocalProvider(
-                                        LocalMinimumInteractiveComponentEnforcement provides false) {
+                                        LocalMinimumInteractiveComponentEnforcement provides false
+                                    ) {
                                         IconButton(
                                             onClick = {
                                                 asklyViewModel.deleteQuestion(questionList.questionId)
@@ -352,8 +356,10 @@ fun StudentClassScreen (
                 .padding(horizontal = 24.dp)
                 .fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
-            border = BorderStroke(1.dp,
-                MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
+            border = BorderStroke(
+                1.dp,
+                MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
+            ),
             color = MaterialTheme.colorScheme.surface
         ) {
             Column(
@@ -396,254 +402,13 @@ fun StudentClassScreen (
                             contentDescription = "Send",
                             tint = if (questionText.isNotBlank())
                                 MaterialTheme.colorScheme.onSurface
-                                else MaterialTheme.colorScheme.onSurfaceVariant
+                            else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
             }
         }
-        Spacer( modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
     }
-
-//    Scaffold(
-//        topBar = {
-//            TopAppBar(
-//                navigationIcon = {
-//                    IconButton(onClick = {
-//                        navController.popBackStack()
-//                    }) {
-//                        Icon(
-//                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-//                            contentDescription = "Back"
-//                        )
-//                    }
-//                },
-//                title = {
-//                    Text(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(end = 16.dp),
-//                        text = "Ask Anonymously",
-//                        textAlign = TextAlign.Center
-//                    )
-//                }
-//            )
-//        }
-//    ) {
-//        paddingValues ->
-//
-//        Column(
-//            modifier = Modifier
-//                .padding(paddingValues)
-//                .padding(16.dp)
-//                .fillMaxSize(),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.spacedBy(16.dp)
-//        ) {
-//            Card (
-//                colors = CardDefaults.cardColors(
-//                    containerColor = Color.White,
-//                    contentColor = Color.Black
-//                ),
-//                border = BorderStroke(width = 1.dp, color = Color.Gray),
-//            ) {
-//                Column(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(16.dp),
-//                    horizontalAlignment = Alignment.CenterHorizontally,
-//                    verticalArrangement = Arrangement.spacedBy(16.dp)
-//                ) {
-//                    Text(
-//                        text = "Type your question here",
-//                        textAlign = TextAlign.Left,
-//                        color = Color.Gray
-//                    )
-//                    TextField(
-//                        value = questionText,
-//                        onValueChange = { questionText = it },
-//                        colors = TextFieldDefaults.colors(
-//                            focusedContainerColor = Color.White,
-//                            unfocusedContainerColor = Color.White,
-//                            focusedTextColor = Color.Black,
-//                            unfocusedTextColor = Color.Gray,
-//                            focusedIndicatorColor = Color.Transparent,
-//                            unfocusedIndicatorColor = Color.Transparent,
-//                            cursorColor = Color.DarkGray
-//                        ),
-//                        modifier = Modifier.fillMaxWidth()
-//                    )
-//                }
-//            }
-//            Button(
-//                modifier = Modifier.fillMaxWidth(),
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = Color.Black,
-//                    contentColor = Color.White
-//                ),
-//                onClick = {
-//                    if (questionText.isNotBlank()) {
-//                        asklyViewModel.addQuestion(questionText)
-//                        questionText = ""
-//                    }
-//                }
-//            ) {
-//                Text(
-//                    text = "Submit Question"
-//                )
-//            }
-//
-//            Row(
-//                modifier = Modifier
-//                    .padding(top = 8.dp)
-//                    .fillMaxWidth(),
-//                horizontalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                Text(
-//                    text = "Your questions",
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .width(300.dp),
-//                contentAlignment = Alignment.Center
-//            ) {
-//                LazyColumn(
-//                    modifier = Modifier.fillMaxSize(),
-//                    horizontalAlignment = Alignment.CenterHorizontally,
-//                    verticalArrangement = Arrangement.spacedBy(16.dp)
-//                ) {
-//                    items(asklyViewModel.questionList) {
-//                            questionList ->
-//
-//                        var isEditing by remember(questionList.questionId) {
-//                            mutableStateOf(false)
-//                        }
-//                        var editedText by remember(questionList.questionId) {
-//                            mutableStateOf(questionList.questionText)
-//                        }
-//
-//                        Card (
-//                            colors = CardDefaults.cardColors (
-//                                containerColor = Color.White,
-//                                contentColor = Color.Black
-//                            ),
-//                            border = BorderStroke(width = 1.dp, color = Color.Gray),
-//                        ) {
-//                            Column(
-//                                modifier = Modifier
-//                                    .padding(16.dp)
-//                                    .fillMaxWidth(),
-//                                verticalArrangement = Arrangement.spacedBy(8.dp)
-//                            ) {
-//                                if (isEditing) {
-//                                    TextField(
-//                                        value = editedText,
-//                                        onValueChange = { editedText = it },
-//                                        colors = TextFieldDefaults.colors(
-//                                            focusedContainerColor = Color.White,
-//                                            unfocusedContainerColor = Color.White,
-//                                            focusedTextColor = Color.Black,
-//                                            unfocusedTextColor = Color.Gray,
-//                                            focusedIndicatorColor = Color.Transparent,
-//                                            unfocusedIndicatorColor = Color.Transparent,
-//                                            cursorColor = Color.DarkGray
-//                                        ),
-//                                        modifier = Modifier.fillMaxWidth()
-//                                    )
-//
-//                                    Column (
-//                                        modifier = Modifier
-//                                            .fillMaxWidth()
-//                                            .width(IntrinsicSize.Max),
-//                                        verticalArrangement = Arrangement.spacedBy(8.dp)
-//                                    ) {
-//                                        Button(
-//                                            colors = ButtonDefaults.buttonColors(
-//                                                containerColor = Color.Transparent,
-//                                                contentColor = Color.DarkGray
-//                                            ),
-//                                            onClick = {
-//                                                if (editedText.isNotBlank()) {
-//                                                    asklyViewModel.updateQuestion(
-//                                                        questionList.questionId,
-//                                                        editedText
-//                                                    )
-//                                                    isEditing = false
-//                                                }
-//                                            }
-//                                        ) {
-//                                            Text(
-//                                                text = "Save"
-//                                            )
-//                                        }
-//                                        Button(
-//                                            colors = ButtonDefaults.buttonColors(
-//                                                containerColor = Color.Transparent,
-//                                                contentColor = Color.Red
-//                                            ),
-//                                            onClick = {
-//                                                editedText = questionList.questionText
-//                                                isEditing = false
-//                                            }
-//                                        ) {
-//                                            Text(
-//                                                text = "Cancel"
-//                                            )
-//                                        }
-//                                    }
-//                                } else {
-//                                    Row(
-//                                        modifier = Modifier.fillMaxWidth(),
-//                                        horizontalArrangement = Arrangement.SpaceBetween
-//                                    ) {
-//                                        Text(
-//                                            text = questionList.questionText
-//                                        )
-//                                        Column (
-//                                            modifier = Modifier.width(IntrinsicSize.Max),
-//                                            verticalArrangement = Arrangement.spacedBy(8.dp)
-//                                        ) {
-//                                            Button(
-//                                                modifier = Modifier.fillMaxWidth(),
-//                                                colors = ButtonDefaults.buttonColors(
-//                                                    containerColor = Color.Transparent,
-//                                                    contentColor = Color.DarkGray
-//                                                ),
-//                                                onClick = {
-//                                                    isEditing = true
-//                                                }
-//                                            ) {
-//                                                Text(
-//                                                    text = "Edit"
-//                                                )
-//                                            }
-//                                            Button(
-//                                                modifier = Modifier.fillMaxWidth(),
-//                                                colors = ButtonDefaults.buttonColors(
-//                                                    containerColor = Color.Transparent,
-//                                                    contentColor = Color.Red
-//                                                ),
-//                                                onClick = {
-//                                                    asklyViewModel.deleteQuestion(questionList.questionId)
-//                                                }
-//                                            ) {
-//                                                Text(
-//                                                    text = "Delete"
-//                                                )
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
 

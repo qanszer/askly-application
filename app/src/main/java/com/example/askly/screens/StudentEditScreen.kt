@@ -100,7 +100,17 @@ fun StudentEditScreen(
                 )
             }
 
+            // Content Area
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 28.dp)
+                    .padding(top = 32.dp),
+                verticalArrangement = Arrangement.Top,
+            ) {
 
+            }
         }
     }
 }
