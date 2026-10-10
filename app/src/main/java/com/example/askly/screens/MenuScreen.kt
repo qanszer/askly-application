@@ -71,7 +71,7 @@ fun MenuScreen(navController: NavController) {
             }
             Icon(
                 imageVector = Icons.Outlined.Settings,
-                contentDescription = "Askly Logo Icon",
+                contentDescription = "Settings",
                 tint = MaterialTheme.colorScheme.onBackground
             )
         }
