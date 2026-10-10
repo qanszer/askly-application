@@ -76,23 +76,3 @@ fun AsklyTheme(
         content = content
     )
 }
-
-@Composable
-fun QuestionMarkIcon(modifier: Modifier = Modifier, fontSize: TextUnit = 20.sp) {
-    Box(
-        modifier = modifier
-            .size(30.dp)
-            .background(
-                color = Color.Black,
-                shape = RoundedCornerShape(8.dp)
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "?",
-            color = Color.White,
-            fontSize = fontSize,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}

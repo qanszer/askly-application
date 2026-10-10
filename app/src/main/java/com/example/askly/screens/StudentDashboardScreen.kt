@@ -196,7 +196,9 @@ fun StudentDashboardScreen (
                         modifier = Modifier.clickable {
                             navController.navigate("studentClass")
                         },
-                        shape = RoundedCornerShape(24.dp)
+                        shape = RoundedCornerShape(24.dp),
+                        border = BorderStroke(1.dp,
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
                     ) {
                         Row(
                             modifier = Modifier
