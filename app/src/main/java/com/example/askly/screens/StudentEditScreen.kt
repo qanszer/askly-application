@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,6 +19,8 @@ import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.outlined.Inventory2
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -96,12 +100,6 @@ fun StudentEditScreen(
                         )
                     }
                 }
-                Icon(
-                    imageVector = Icons.Outlined.Settings,
-                    contentDescription = "Settings",
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
-                Spacer(modifier = Modifier.width(16.dp))
             }
             Column(
                 modifier = Modifier
@@ -129,13 +127,12 @@ fun StudentEditScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .padding(horizontal = 28.dp)
                     .padding(top = 32.dp),
                 verticalArrangement = Arrangement.Top,
             ) {
                 Surface(
                     modifier = Modifier
-                        .padding(horizontal = 24.dp)
+                        .padding(horizontal = 18.dp)
                         .fillMaxWidth(),
                     shape = RoundedCornerShape(24.dp),
                     border = BorderStroke(
@@ -161,35 +158,81 @@ fun StudentEditScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .heightIn(min = 80.dp)
+                                .heightIn(min = 150.dp),
+                            textStyle = TextStyle(fontSize = 18.sp)
                         )
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 4.dp),
-                            horizontalArrangement = Arrangement.End,
+                                .padding(start = 14.dp, bottom = 8.dp)
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            IconButton(
-                                onClick = {
-                                    asklyViewModel.updateQuestion(
-                                        questionid,
-                                        questionText
-                                    )
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.Send,
-                                    contentDescription = "Save Changes",
-                                    tint = if (questionText.isNotBlank())
-                                        MaterialTheme.colorScheme.onSurface
-                                    else MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
+                            Text(
+                                text = "0 upvotes",
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
                     }
                 }
+                Text(
+                    text = "You can edit at anytime. Edits stay anonymous " +
+                            "and keep their upvotes",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 14.dp, horizontal = 24.dp)
+                )
             }
+
+            // Bottom Bar
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                            alpha = 0.2f
+                        )
+                    ),
+                    modifier = Modifier.weight(0.8f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.background,
+                        contentColor = MaterialTheme.colorScheme.onBackground
+                    ),
+                    onClick = { navController.popBackStack() }
+                ) {
+                    Text(
+                        text = "Cancel",
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(6.dp)
+                    )
+                }
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary
+                    ),
+                    modifier = Modifier.weight(1.7f),
+                    onClick = {
+                        asklyViewModel.updateQuestion(
+                            questionid,
+                            questionText
+                        )
+                        navController.popBackStack()
+                    }
+                ) {
+                    Text(
+                        text = "Save changes",
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(6.dp)
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }
