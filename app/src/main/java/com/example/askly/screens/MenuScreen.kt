@@ -88,7 +88,7 @@ fun MenuScreen(navController: NavController) {
                 imageVector = Icons.Outlined.Forum,
                 contentDescription = "Menu Screen Icon",
                 tint = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.size(90.dp)
+                modifier = Modifier.size(80.dp)
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
@@ -124,8 +124,8 @@ fun MenuScreen(navController: NavController) {
                 .padding(horizontal = 12.dp)
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Black,
-                contentColor = Color.White
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary
             ),
             onClick = { navController.navigate("studentDashboard") }
         ) {
@@ -140,7 +140,12 @@ fun MenuScreen(navController: NavController) {
             modifier = Modifier
                 .padding(horizontal = 12.dp)
                 .fillMaxWidth(),
-            border = BorderStroke(width = 1.dp, color = Color.Black),
+            border = BorderStroke(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                    alpha = 0.6f
+                )
+            ),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
                 contentColor = Color.Black
