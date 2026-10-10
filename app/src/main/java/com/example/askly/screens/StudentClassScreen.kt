@@ -313,7 +313,11 @@ fun StudentClassScreen (
                                         LocalMinimumInteractiveComponentEnforcement provides false
                                     ) {
                                         IconButton(
-                                            onClick = { },
+                                            onClick = {
+                                                navController.navigate(
+                                                    "studentEdit/${questionList.questionId}"
+                                                )
+                                            },
                                             modifier = Modifier.size(48.dp)
                                         ) {
                                             Icon(

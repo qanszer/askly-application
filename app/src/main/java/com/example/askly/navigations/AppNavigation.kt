@@ -23,6 +23,7 @@ import com.example.askly.screens.ProfessorDashboardScreen
 import com.example.askly.screens.SignInScreen
 import com.example.askly.screens.StudentClassScreen
 import com.example.askly.screens.StudentDashboardScreen
+import com.example.askly.screens.StudentEditScreen
 
 @Composable
 fun AppNavigation () {
@@ -53,6 +54,14 @@ fun AppNavigation () {
         }
         composable("studentClass") {
             StudentClassScreen(navrouting, asklyViewModel)
+        }
+        composable("studentEdit/{questionId}") {
+                backStackEntry ->
+            val questionid = backStackEntry.arguments
+                ?.getString("questionId")
+                ?.toIntOrNull() ?: -1
+
+            StudentEditScreen(questionid, navrouting, asklyViewModel)
         }
 
 //      Professor Screens
