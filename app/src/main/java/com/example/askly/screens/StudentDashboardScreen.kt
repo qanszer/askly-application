@@ -4,6 +4,7 @@ import android.R.attr.text
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,6 +44,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -193,10 +195,15 @@ fun StudentDashboardScreen (
                             containerColor = MaterialTheme.colorScheme.surface,
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ),
-                        modifier = Modifier.clickable {
+                        modifier = Modifier.clickable (
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) {
                             navController.navigate("studentClass")
                         },
-                        shape = RoundedCornerShape(24.dp)
+                        shape = RoundedCornerShape(24.dp),
+                        border = BorderStroke(1.dp,
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
                     ) {
                         Row(
                             modifier = Modifier

@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.askly.navigations.AppNavigation
 import com.example.askly.screens.SignInScreen
+import com.example.askly.screens.StudentClassScreen
 import com.example.askly.ui.theme.AsklyTheme
 
 class MainActivity : ComponentActivity() {

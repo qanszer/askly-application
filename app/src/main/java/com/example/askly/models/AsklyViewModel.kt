@@ -12,7 +12,13 @@ class AsklyViewModel : ViewModel() {
                 questionId = 1,
                 classroomId = 1,
                 authorId = 1,
-                questionText = "Test question?"
+                questionText = "Is mobile development more lucrative than web development right now?"
+            ),
+            QuestionModel(
+                questionId = 2,
+                classroomId = 1,
+                authorId = 1,
+                questionText = "Attendance po sir present po"
             )
         )
     )
