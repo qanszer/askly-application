@@ -86,7 +86,7 @@ fun StudentDashboardScreen (
                     LocalMinimumInteractiveComponentEnforcement provides false) {
                     IconButton(
                         onClick = { navController.popBackStack() },
-                        modifier = Modifier.size(48.dp) // Set to whatever total size you want
+                        modifier = Modifier.size(48.dp)
                     ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBackIosNew,
@@ -237,7 +237,7 @@ fun StudentDashboardScreen (
                 containerColor = MaterialTheme.colorScheme.secondary,
                 contentColor = MaterialTheme.colorScheme.onSecondary
             ),
-            onClick = { navController.navigate("professorDashboard") }
+            onClick = { navController.navigate("studentJoin") }
         ) {
             Text(
                 text = "+   Join a classroom",
