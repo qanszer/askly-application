@@ -1,27 +1,39 @@
-package com.example.askly.models
+package com.example.askly.data.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import com.example.askly.data.AsklyApplication
+import com.example.askly.data.AsklyRepository
+import com.example.askly.data.model.ClassroomModel
+import com.example.askly.data.model.QuestionModel
 
-class AsklyViewModel : ViewModel() {
-    var questionList by mutableStateOf(
-        value = listOf(
-            QuestionModel(
-                questionId = 1,
-                classroomId = 1,
-                authorId = 1,
-                questionText = "Is mobile development more lucrative than web development right now?"
-            ),
-            QuestionModel(
-                questionId = 2,
-                classroomId = 1,
-                authorId = 1,
-                questionText = "Attendance po sir present po"
-            )
-        )
-    )
+class AsklyViewModel(
+    private val asklyRepository: AsklyRepository
+) : ViewModel() {
+
+    var classroomList = AsklyRepository.classroomList
+    var questionList = AsklyRepository.questionList
+    var userList = AsklyRepository.userList
+
+//    var questionList by mutableStateOf(
+//        value = listOf(
+//            QuestionModel(
+//                questionId = 1,
+//                classroomId = 1,
+//                authorId = 1,
+//                questionText = "Is mobile development more lucrative than web development right now?"
+//            ),
+//            QuestionModel(
+//                questionId = 2,
+//                classroomId = 1,
+//                authorId = 1,
+//                questionText = "Attendance po sir present po"
+//            )
+//        )
+//    )
 
     fun addQuestion (questionText: String) {
         val newQuestion = QuestionModel(
