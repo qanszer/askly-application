@@ -1,9 +1,11 @@
-package com.example.askly.models
+package com.example.askly.data.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.askly.data.model.ClassroomModel
+import com.example.askly.data.model.QuestionModel
 
 class AsklyViewModel : ViewModel() {
     var questionList by mutableStateOf(

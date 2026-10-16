@@ -1,7 +1,5 @@
 package com.example.askly.navigations
 
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -14,7 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.askly.models.AsklyViewModel
+import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen
 import com.example.askly.screens.MenuScreen

@@ -1,4 +1,4 @@
-package com.example.askly.models
+package com.example.askly.data.model
 
 data class RosterModel (
     val userId: Int,
