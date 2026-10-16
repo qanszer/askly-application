@@ -50,9 +50,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.ui.theme.CustomSegmentedSwitch
+import kotlin.collections.emptyList
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,6 +63,10 @@ fun StudentClassScreen (
     navController: NavController,
     asklyViewModel: AsklyViewModel
 ) {
+    val questions by asklyViewModel.questionList.collectAsStateWithLifecycle(
+        initialValue = emptyList()
+    )
+
     val context = LocalContext.current;
 
     var selectedIndex by remember { mutableStateOf(0) }
@@ -240,7 +246,7 @@ fun StudentClassScreen (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(asklyViewModel.questionList) { questionList ->
+                items(questions) { questionList ->
 
                     var isEditing by remember(questionList.questionId) {
                         mutableStateOf(false)
@@ -351,7 +357,8 @@ fun StudentClassScreen (
                 1.dp,
                 MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
             ),
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = 2.dp
         ) {
             Column(
                 modifier = Modifier.padding(8.dp)

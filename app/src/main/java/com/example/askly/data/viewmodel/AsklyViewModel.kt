@@ -4,62 +4,60 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.askly.data.AsklyRepository
 import com.example.askly.data.model.ClassroomModel
 import com.example.askly.data.model.QuestionModel
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
-class AsklyViewModel : ViewModel() {
-    var questionList by mutableStateOf(
-        value = listOf(
-            QuestionModel(
-                questionId = 1,
-                classroomId = 1,
-                authorId = 1,
-                questionText = "Is mobile development more lucrative than web development right now?"
-            ),
-            QuestionModel(
-                questionId = 2,
-                classroomId = 1,
-                authorId = 1,
-                questionText = "Attendance po sir present po"
+class AsklyViewModel(
+    private val asklyRepository: AsklyRepository
+) : ViewModel() {
+    var questionList = asklyRepository.questionList
+
+    fun addQuestion (
+        question: String,
+    ) {
+        viewModelScope.launch {
+            asklyRepository.questionAdd(
+                QuestionModel(
+                    classroomId = 1,
+                    authorId = 1,
+                    questionText = question,
+                )
             )
-        )
-    )
-
-    fun addQuestion (questionText: String) {
-        val newQuestion = QuestionModel(
-            questionId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
-            classroomId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
-            authorId = (questionList.maxOfOrNull { it.questionId } ?: 0) + 1,
-            questionText = questionText
-        )
-        questionList += newQuestion
-    }
-
-    fun deleteQuestion (questionId: Int) {
-        questionList = questionList.filter {
-            it.questionId != questionId
         }
     }
 
-    fun getQuestionById (questionId: Int) : QuestionModel? {
-        return questionList.find {
-            it.questionId == questionId
+    fun deleteQuestion (questionId: Int) {
+        viewModelScope.launch {
+            val question = questionList.first().find{
+                it.questionId == questionId
+            }
+
+            question?.let {
+                asklyRepository.questionRemove(question)
+            }
         }
     }
 
     fun updateQuestion (
-        questionId: Int,
-        questionName: String
+        id: Int,
+        text: String
     ) {
-        questionList = questionList.map {
-                questionData ->
-            if (questionData.questionId == questionId) {
-                questionData.copy (
-                    questionId = questionId,
-                    questionText = questionName
+        viewModelScope.launch {
+            val question = questionList.first().find{
+                it.questionId == id
+            }
+
+            question?.let {
+                asklyRepository.questionEdit(
+                    it.copy(
+                        questionText = text
+                    )
                 )
-            } else {
-                questionData
             }
         }
     }

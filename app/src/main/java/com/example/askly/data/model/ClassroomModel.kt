@@ -1,7 +1,11 @@
 package com.example.askly.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class ClassroomModel (
-    val classroomId: Int = 0,
+    @PrimaryKey(autoGenerate = true) val classroomId: Int = 0,
     val joinCode: String,
     val classroomName: String,
     val ownerId: Int,

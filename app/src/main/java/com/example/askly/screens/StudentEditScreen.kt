@@ -29,6 +29,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,23 +42,33 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
+import java.util.Collections.emptyList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StudentEditScreen(
-    questionid: Int,
+    id: Int,
     navController: NavController,
     asklyViewModel: AsklyViewModel
 ) {
     val context = LocalContext.current;
 
-    val questions = asklyViewModel.getQuestionById(questionid)
+    val questions by asklyViewModel.questionList.collectAsStateWithLifecycle(
+        initialValue = emptyList()
+    )
 
-//    val empData = employees.find { it.id == empId }
-    var questionText by remember {
-        mutableStateOf(questions?.questionText ?: "")
+    val questionData = questions.find { it.questionId == id }
+
+    var question by remember { mutableStateOf("") }
+    var isLoaded by remember { mutableStateOf(false) }
+    LaunchedEffect(questionData) {
+        if (!isLoaded && questionData != null) {
+            question = questionData.questionText
+            isLoaded = true
+        }
     }
 
     Column(
@@ -140,8 +151,8 @@ fun StudentEditScreen(
                         modifier = Modifier.padding(8.dp)
                     ) {
                         TextField(
-                            value = questionText,
-                            onValueChange = { questionText = it },
+                            value = question,
+                            onValueChange = { question = it },
                             maxLines = 4,
                             singleLine = false,
                             colors = TextFieldDefaults.colors(
@@ -214,8 +225,8 @@ fun StudentEditScreen(
                     modifier = Modifier.weight(1.7f),
                     onClick = {
                         asklyViewModel.updateQuestion(
-                            questionid,
-                            questionText
+                            id,
+                            question
                         )
                         navController.popBackStack()
                     }

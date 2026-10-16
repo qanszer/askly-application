@@ -12,6 +12,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.askly.data.AsklyFactory
+import com.example.askly.data.AsklyRepository
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen
@@ -24,9 +26,13 @@ import com.example.askly.screens.StudentDashboardScreen
 import com.example.askly.screens.StudentEditScreen
 
 @Composable
-fun AppNavigation () {
+fun AppNavigation (
+    repository: AsklyRepository
+) {
     val navrouting = rememberNavController()
-    val asklyViewModel : AsklyViewModel = viewModel()
+    val asklyViewModel : AsklyViewModel = viewModel(
+        factory = AsklyFactory(repository)
+    )
 
     NavHost(
         navController = navrouting,
@@ -55,11 +61,11 @@ fun AppNavigation () {
         }
         composable("studentEdit/{questionId}") {
                 backStackEntry ->
-            val questionid = backStackEntry.arguments
+            val id = backStackEntry.arguments
                 ?.getString("questionId")
                 ?.toIntOrNull() ?: -1
 
-            StudentEditScreen(questionid, navrouting, asklyViewModel)
+            StudentEditScreen(id, navrouting, asklyViewModel)
         }
 
 //      Professor Screens
