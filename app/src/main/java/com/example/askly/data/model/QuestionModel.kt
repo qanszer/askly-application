@@ -5,9 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class QuestionModel (
-    @PrimaryKey(autoGenerate = true) val questionId: Int = 0,
-    val classroomId: Int,
-    val authorId: Int,
+    @PrimaryKey(autoGenerate = true)
+    val questionId: String,
+    val classroomId: String = "",
+    val authorId: String = "",
     val questionText: String,
     val submittedAt: Long = System.currentTimeMillis(),
     val isDeleted: Boolean = false
