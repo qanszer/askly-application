@@ -66,6 +66,7 @@ fun StudentClassScreen (
     val questions by asklyViewModel.questionList.collectAsStateWithLifecycle(
         initialValue = emptyList()
     )
+    val filtered = questions.filter { it.isDeleted == 0 }
 
     val context = LocalContext.current;
 

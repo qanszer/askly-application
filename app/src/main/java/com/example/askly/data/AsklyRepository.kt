@@ -25,11 +25,57 @@ class AsklyRepository (private val questionDao: QuestionDao) {
 
         db.collection("coll_questions")
             .add(question)
+            .addOnSuccessListener {
+                print("Question added succesffuly")
+            }
+            .addOnFailureListener { error ->
+                print("Question addition failed: " + error)
+            }
             .await()
+    }
+
+    suspend fun getQuestion(
+        onDefault: (List<QuestionModel>) -> Unit
+    ) {
+        db.collection("coll_questions")
+            .addSnapshotListener { snapshots, error ->
+                if (error != null) {
+                    println("Listen failed: ${error.message}")
+                    onDefault(emptyList())
+                    return@addSnapshotListener
+                }
+
+                if (snapshots != null) {
+                    val employees = snapshots.documents.map {
+                        document ->
+                        QuestionModel(
+
+                        )
+                    }
+                }
+            }
     }
 
     suspend fun questionEdit(question : QuestionModel) {
         questionDao.update(question)
+
+        db.collection("coll_questions")
+            .addSnapshotListener { snapshots, error ->
+                if (error != null) {
+                    println("Listen failed: ${error.message}")
+                    onDefault(emptyList())
+                    return@addSnapshotListener
+                }
+
+                if (snapshots != null) {
+                    val employees = snapshots.documents.map {
+                            document ->
+                        QuestionModel(
+                            isDeleted = document.getBoolean("isDeleted") ?: 0,
+                        )
+                    }
+                }
+            }
     }
 
     suspend fun questionRemove(question : QuestionModel) {
