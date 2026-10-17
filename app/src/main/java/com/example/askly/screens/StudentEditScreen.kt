@@ -50,15 +50,13 @@ import java.util.Collections.emptyList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StudentEditScreen(
-    id: Int,
+    id: String,
     navController: NavController,
     asklyViewModel: AsklyViewModel
 ) {
     val context = LocalContext.current;
 
-    val questions by asklyViewModel.questionList.collectAsStateWithLifecycle(
-        initialValue = emptyList()
-    )
+    val questions = asklyViewModel.questions.value
 
     val questionData = questions.find { it.questionId == id }
 

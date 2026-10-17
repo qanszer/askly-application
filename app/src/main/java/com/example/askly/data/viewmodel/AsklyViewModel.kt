@@ -8,14 +8,26 @@ import androidx.lifecycle.viewModelScope
 import com.example.askly.data.AsklyRepository
 import com.example.askly.data.model.ClassroomModel
 import com.example.askly.data.model.QuestionModel
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import androidx.compose.runtime.State
 
 class AsklyViewModel(
     private val asklyRepository: AsklyRepository
 ) : ViewModel() {
-    var questionList = asklyRepository.questionList
+    private val _questions = mutableStateOf<List<QuestionModel>>(emptyList())
+    val questions: State<List<QuestionModel>> = _questions
+
+    init {
+        getQuestion()
+    }
+
+    fun getQuestion() {
+        viewModelScope.launch {
+            asklyRepository.getQuestion { result ->
+                _questions.value = result
+            }
+        }
+    }
 
     fun addQuestion (
         question: String,
@@ -23,55 +35,51 @@ class AsklyViewModel(
         viewModelScope.launch {
             asklyRepository.questionAdd(
                 QuestionModel(
-                    classroomId = 1,
-                    authorId = 1,
-                    questionText = question,
+                    questionId = "",
+                    classroomId = "",
+                    authorId = "",
+                    questionText = question
                 )
             )
         }
     }
 
-    fun deleteQuestion (questionId: Int) {
+    fun deleteQuestion (questionId: String) {
         viewModelScope.launch {
-            val question = questionList.first().find{
+            val question = questions.value.find {
                 it.questionId == questionId
             }
 
             question?.let {
-                asklyRepository.questionRemove(question)
+                asklyRepository.questionRemove(it)
             }
         }
     }
 
     fun updateQuestion (
-        id: Int,
+        id: String,
         text: String
     ) {
         viewModelScope.launch {
-            val question = questionList.first().find{
-                it.questionId == id
-            }
-
-            question?.let {
-                asklyRepository.questionEdit(
-                    it.copy(
-                        questionText = text
-                    )
+            asklyRepository.questionEdit(
+                QuestionModel(
+                    questionId = id,
+                    questionText = text
                 )
-            }
+            )
         }
     }
 
     var classroomList by mutableStateOf(
         value = listOf(
             ClassroomModel(
-                classroomId = 1,
+                classroomId = "",
                 joinCode = "ASDF",
                 classroomName = "Mobile Development",
                 ownerId = 1
             ),
             ClassroomModel(
-                classroomId = 2,
+                classroomId = "",
                 joinCode = "QWER",
                 classroomName = "Nihongo",
                 ownerId = 1

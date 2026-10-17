@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ClassroomModel (
-    @PrimaryKey(autoGenerate = true) val classroomId: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val classroomId: String = "",
     val joinCode: String,
     val classroomName: String,
     val ownerId: Int,

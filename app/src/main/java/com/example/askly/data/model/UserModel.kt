@@ -1,7 +1,7 @@
 package com.example.askly.data.model
 
 data class UserModel (
-    val userId: Int = 0,
+    val userId: String = "",
     val firstName: String,
     val lastName: String,
     val email: String,

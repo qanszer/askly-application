@@ -63,9 +63,8 @@ fun StudentClassScreen (
     navController: NavController,
     asklyViewModel: AsklyViewModel
 ) {
-    val questions by asklyViewModel.questionList.collectAsStateWithLifecycle(
-        initialValue = emptyList()
-    )
+    val questions = asklyViewModel.questions.value
+    val filtered = questions.filter { !it.isDeleted }
 
     val context = LocalContext.current;
 
@@ -246,7 +245,7 @@ fun StudentClassScreen (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(questions) { questionList ->
+                items(filtered) { questionList ->
 
                     var isEditing by remember(questionList.questionId) {
                         mutableStateOf(false)

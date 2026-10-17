@@ -26,10 +26,9 @@ import com.example.askly.screens.StudentDashboardScreen
 import com.example.askly.screens.StudentEditScreen
 
 @Composable
-fun AppNavigation (
-    repository: AsklyRepository
-) {
+fun AppNavigation () {
     val navrouting = rememberNavController()
+    val repository = AsklyRepository()
     val asklyViewModel : AsklyViewModel = viewModel(
         factory = AsklyFactory(repository)
     )
@@ -62,8 +61,7 @@ fun AppNavigation (
         composable("studentEdit/{questionId}") {
                 backStackEntry ->
             val id = backStackEntry.arguments
-                ?.getString("questionId")
-                ?.toIntOrNull() ?: -1
+                ?.getString("questionId") ?: ""
 
             StudentEditScreen(id, navrouting, asklyViewModel)
         }
