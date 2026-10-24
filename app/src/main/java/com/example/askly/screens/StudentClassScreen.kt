@@ -364,7 +364,11 @@ fun StudentClassScreen (
             ) {
                 TextField(
                     value = questionText,
-                    onValueChange = { questionText = it },
+                    onValueChange = { newValue ->
+                        if (newValue.length <= maxCharacters) {
+                            questionText = newValue
+                        }
+                    },
                     placeholder = { Text("Type your question...") },
                     maxLines = 4,
                     singleLine = false,
