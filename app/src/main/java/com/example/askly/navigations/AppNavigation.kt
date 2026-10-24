@@ -77,7 +77,7 @@ fun AppNavigation () {
             CreateClassroomScreen(navrouting)
         }
         composable("professorClass") {
-            ProfessorClassScreen(navrouting)
+            ProfessorClassScreen(navrouting, asklyViewModel)
         }
     }
 }
