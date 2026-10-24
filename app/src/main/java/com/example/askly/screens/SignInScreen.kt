@@ -1,6 +1,5 @@
 package com.example.askly.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,12 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.outlined.Forum
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,9 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -74,7 +67,7 @@ fun SignInScreen (navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(22.dp)
+                .padding(horizontal = 24.dp)
                 .padding(top = 130.dp),
             verticalArrangement = Arrangement.Top,
         ) {
@@ -100,8 +93,8 @@ fun SignInScreen (navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
             Text(
                 text = "Only professors need an account. It ties each classroom" +
-                        "and its join code to you, so nobody else can moderate your" +
-                        "questions",
+                        "and its join code to you, so nobody else can moderate your " +
+                        "questions.",
                 fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(end = 16.dp)
@@ -111,11 +104,11 @@ fun SignInScreen (navController: NavController) {
         // Bottom Bar
         Button(
             modifier = Modifier
-                .padding(horizontal = 12.dp)
+                .padding(horizontal = 24.dp)
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Black,
-                contentColor = Color.White
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary
             ),
             onClick = { navController.navigate("professorDashboard") }
         ) {
