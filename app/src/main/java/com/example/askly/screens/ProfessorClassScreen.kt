@@ -1,8 +1,5 @@
 package com.example.askly.screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.outlined.Inventory2
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Card
@@ -24,6 +22,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -152,7 +151,8 @@ fun ProfessorClassScreen (
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 28.dp, vertical = 4.dp),
+                .padding(horizontal = 28.dp)
+                .padding(top = 42.dp),
             verticalArrangement = Arrangement.Top,
         ) {
             Card (
@@ -160,40 +160,46 @@ fun ProfessorClassScreen (
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                 ),
-                modifier = Modifier.clickable (
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null
-                ) {
-                    navController.navigate("studentClass")
-                },
                 shape = RoundedCornerShape(24.dp),
-                border = BorderStroke(1.dp,
-                    MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
             ) {
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 26.dp, vertical = 32.dp)
+                        .padding(horizontal = 26.dp, vertical = 22.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
                         Text(
-                            text = classList.classroomName,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Text(
-                            text = "Sir Amado Sapit",
+                            text = "JOIN CODE",
+                            fontSize = 14.sp,
+                            letterSpacing = 4.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
+                        Text(
+                            text = "ASDF",
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            fontSize = 42.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
-                    Text(
-                        text = classList.joinCode,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(52.dp),
+                        colors = IconButtonDefaults.iconButtonColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceDim,
+                            contentColor = MaterialTheme.colorScheme.surface
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ContentCopy,
+                            contentDescription = "Copy",
+                            tint = MaterialTheme.colorScheme.surface,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
                 }
             }
         }

@@ -187,7 +187,7 @@ fun ProfessorDashboardScreen (
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null
                         ) {
-                            navController.navigate("studentClass")
+                            navController.navigate("professorClass")
                         },
                         shape = RoundedCornerShape(24.dp),
                         border = BorderStroke(1.dp,
