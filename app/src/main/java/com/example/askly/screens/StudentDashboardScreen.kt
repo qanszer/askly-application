@@ -87,6 +87,7 @@ fun StudentDashboardScreen (
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
                     Text("Select")
                     Spacer(modifier = Modifier.width(24.dp))
