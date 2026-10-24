@@ -127,7 +127,7 @@ fun StudentDashboardScreen (
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(horizontal = 28.dp, vertical = 14.dp),
+                .padding(horizontal = 28.dp, vertical = 4.dp),
             verticalArrangement = Arrangement.Top,
         ) {
             Row(

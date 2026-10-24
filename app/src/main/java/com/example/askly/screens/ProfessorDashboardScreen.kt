@@ -106,7 +106,7 @@ fun ProfessorDashboardScreen (
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Student",
+                    text = "Prof. Sapit",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
@@ -127,7 +127,7 @@ fun ProfessorDashboardScreen (
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(horizontal = 28.dp, vertical = 14.dp),
+                .padding(horizontal = 28.dp, vertical = 4.dp),
             verticalArrangement = Arrangement.Top,
         ) {
             Row(
@@ -232,10 +232,10 @@ fun ProfessorDashboardScreen (
                 containerColor = MaterialTheme.colorScheme.secondary,
                 contentColor = MaterialTheme.colorScheme.onSecondary
             ),
-            onClick = { navController.navigate("studentJoin") }
+            onClick = { navController.navigate("professorCreate") }
         ) {
             Text(
-                text = "+   Join a classroom",
+                text = "+   New classroom",
                 fontSize = 18.sp,
                 modifier = Modifier.padding(8.dp)
             )
