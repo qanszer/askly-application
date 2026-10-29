@@ -39,6 +39,7 @@ fun MenuScreen(navController: NavController) {
             .fillMaxSize()
             .systemBarsPadding()
     ) {
+        // Custom Top Bar
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -60,9 +61,12 @@ fun MenuScreen(navController: NavController) {
             Icon(
                 imageVector = Icons.Outlined.Settings,
                 contentDescription = "Settings",
-                tint = MaterialTheme.colorScheme.onBackground
+                tint = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.size(22.dp)
             )
         }
+
+        // Content Area
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -107,6 +111,8 @@ fun MenuScreen(navController: NavController) {
                 textAlign = TextAlign.Center
             )
         }
+
+        // Bottom Area
         Button(
             modifier = Modifier
                 .padding(horizontal = 24.dp)

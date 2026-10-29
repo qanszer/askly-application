@@ -50,11 +50,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.ui.theme.CustomSegmentedSwitch
-import kotlin.collections.emptyList
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -114,13 +112,15 @@ fun StudentClassScreen (
                     Icon(
                         imageVector = Icons.Outlined.Inventory2,
                         contentDescription = "Archive",
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.size(22.dp)
                     )
                     Spacer(modifier = Modifier.width(24.dp))
                     Icon(
                         imageVector = Icons.Outlined.Settings,
                         contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.size(22.dp)
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                 }
