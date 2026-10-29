@@ -88,25 +88,42 @@ fun ProfessorClassScreen (
                             imageVector = Icons.Default.ArrowBackIosNew,
                             contentDescription = "Back",
                             tint = MaterialTheme.colorScheme.onBackground,
-                            modifier = Modifier.size(16.dp)
+                            modifier = Modifier.size(14.dp)
                         )
                     }
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Inventory2,
-                        contentDescription = "Archive",
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                    Spacer(modifier = Modifier.width(24.dp))
-                    Icon(
-                        imageVector = Icons.Outlined.Settings,
-                        contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                    Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Inventory2,
+                            contentDescription = "Archive",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
                 }
             }
             Column(
@@ -202,6 +219,7 @@ fun ProfessorClassScreen (
                     }
                 }
             }
+
         }
 
         Spacer(modifier = Modifier.height(20.dp))
