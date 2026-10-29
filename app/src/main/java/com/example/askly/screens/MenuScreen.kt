@@ -70,9 +70,9 @@ fun MenuScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+//                .weight(1f)
                 .padding(22.dp)
-                .padding(bottom = 50.dp),
+                .padding(top = 150.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -110,6 +110,7 @@ fun MenuScreen(navController: NavController) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
+            Spacer(modifier = Modifier.height(24.dp))
         }
 
         // Bottom Area
