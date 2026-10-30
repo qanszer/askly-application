@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
@@ -89,15 +90,34 @@ fun ProfessorDashboardScreen (
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text("Select")
-                    Spacer(modifier = Modifier.width(24.dp))
-                    Icon(
-                        imageVector = Icons.Outlined.Settings,
-                        contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.size(22.dp)
-                    )
-                    Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CheckBoxOutlineBlank,
+                            contentDescription = "Select",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
                 }
             }
             Column(
@@ -110,11 +130,11 @@ fun ProfessorDashboardScreen (
                     text = "Prof. Sapit",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 15.sp
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Your classrooms",
+                    text = "Classrooms",
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
@@ -166,7 +186,8 @@ fun ProfessorDashboardScreen (
                 }
                 Text(
                     text = "1 Total",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 14.sp
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
