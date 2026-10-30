@@ -44,7 +44,7 @@ private val LightColorScheme = lightColorScheme(
     outlineVariant = LightRing
 )
 
-object AsklyDimens {
+object AsklyDimensions {
     val current: Dimensions
         @Composable get() = LocalDimensions.current
 }

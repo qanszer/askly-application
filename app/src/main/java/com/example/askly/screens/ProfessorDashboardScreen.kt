@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
+import com.example.askly.ui.theme.AsklyDimensions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,6 +53,7 @@ fun ProfessorDashboardScreen (
     navController: NavController,
     classModel: AsklyViewModel
 ) {
+    val dimensions = AsklyDimensions.current
     val context = LocalContext.current;
 
     Column(
@@ -67,13 +69,13 @@ fun ProfessorDashboardScreen (
             verticalArrangement = Arrangement.Center
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CompositionLocalProvider(
-                    LocalMinimumInteractiveComponentEnforcement provides false) {
+                    LocalMinimumInteractiveComponentEnforcement provides false
+                ) {
                     IconButton(
                         onClick = { navController.popBackStack() },
                         modifier = Modifier.size(48.dp)
@@ -103,7 +105,6 @@ fun ProfessorDashboardScreen (
                             modifier = Modifier.size(22.dp)
                         )
                     }
-                    Spacer(modifier = Modifier.width(4.dp))
                     IconButton(
                         onClick = {
 
@@ -120,9 +121,15 @@ fun ProfessorDashboardScreen (
                     Spacer(modifier = Modifier.width(4.dp))
                 }
             }
+        }
+
+        // Content Area
+        Column(
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
+        ) {
             Column(
                 modifier = Modifier
-                    .padding(top = 8.dp, start = 18.dp)
+                    .padding(top = 8.dp)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.Center
             ) {
@@ -140,128 +147,122 @@ fun ProfessorDashboardScreen (
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-        }
-
-
-        // Content Area
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 28.dp, vertical = 4.dp),
-            verticalArrangement = Arrangement.Top,
-        ) {
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(vertical = 4.dp),
+                verticalArrangement = Arrangement.Top,
             ) {
-                Button(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                            alpha = 0.2f
-                        )
-                    ),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.background,
-                        contentColor = Color.Black
-                    ),
-                    onClick = {  },
-                    contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.FilterList,
-                        contentDescription = "Sort",
-                        tint = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.size(16.dp)
-                    )
-                    Spacer(modifier = Modifier.width(6.dp))
+                    // Sort Button
+                    Button(
+                        border = BorderStroke(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                alpha = 0.2f
+                            )
+                        ),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.background,
+                            contentColor = Color.Black
+                        ),
+                        onClick = {  },
+                        contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FilterList,
+                            contentDescription = "Sort",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = "Newest",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
                     Text(
-                        text = "Newest",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
+                        text = "1 Total",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 14.sp
                     )
                 }
-                Text(
-                    text = "1 Total",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontSize = 14.sp
-                )
-            }
-            Spacer(modifier = Modifier.height(32.dp))
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(classModel.classroomList) {
-                        classList ->
+                Spacer(modifier = Modifier.height(32.dp))
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(classModel.classroomList) {
+                            classList ->
 
-                    Card (
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                            contentColor = MaterialTheme.colorScheme.onSurface,
-                        ),
-                        modifier = Modifier.clickable (
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
+                        Card (
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surface,
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                            ),
+                            modifier = Modifier.clickable (
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                navController.navigate("professorClass")
+                            },
+                            shape = RoundedCornerShape(24.dp),
+                            border = BorderStroke(1.dp,
+                                MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
                         ) {
-                            navController.navigate("professorClass")
-                        },
-                        shape = RoundedCornerShape(24.dp),
-                        border = BorderStroke(1.dp,
-                            MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .padding(horizontal = 26.dp, vertical = 32.dp)
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 26.dp, vertical = 32.dp)
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column {
+                                    Text(
+                                        text = classList.classroomName,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp,
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    )
+                                    Text(
+                                        text = "Sir Amado Sapit",
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                                 Text(
-                                    text = classList.classroomName,
+                                    text = classList.joinCode,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                                Text(
-                                    text = "Sir Amado Sapit",
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    fontSize = 20.sp
                                 )
                             }
-                            Text(
-                                text = classList.joinCode,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 20.sp
-                            )
                         }
                     }
                 }
             }
-        }
 
-        // Bottom Bar
-        Button(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            onClick = { navController.navigate("professorCreate") }
-        ) {
-            Text(
-                text = "+   New classroom",
-                fontSize = 18.sp,
-                modifier = Modifier.padding(8.dp)
-            )
+            // Bottom Bar
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                onClick = { navController.navigate("professorCreate") }
+            ) {
+                Text(
+                    text = "+   New classroom",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+            }
+            Spacer( modifier = Modifier.height(20.dp))
         }
-        Spacer( modifier = Modifier.height(20.dp))
     }
 }

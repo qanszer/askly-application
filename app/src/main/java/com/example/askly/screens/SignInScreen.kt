@@ -28,11 +28,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.QuestionMarkIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen (navController: NavController) {
+    val dimensions = AsklyDimensions.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,7 +47,6 @@ fun SignInScreen (navController: NavController) {
                 .padding(horizontal = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.Absolute.Left
         ) {
             CompositionLocalProvider(
                 LocalMinimumInteractiveComponentEnforcement provides false) {
@@ -64,59 +66,59 @@ fun SignInScreen (navController: NavController) {
 
         // Content Area
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-//                .weight(1f) // makes the button go to the bottom
-                .padding(horizontal = 28.dp)
-                .padding(top = 150.dp),
-            verticalArrangement = Arrangement.Top,
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
         ) {
-            QuestionMarkIcon(
-                modifier = Modifier.size(80.dp),
-                fontSize = 55.sp
-            )
-            Spacer(modifier = Modifier.height(32.dp))
-            Text(
-                text = "Sign in to create",
-                fontSize = 40.sp,
-                letterSpacing = (-0.8).sp,
-                color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Bold,
-            )
-            Text(
-                text = "a classroom",
-                fontSize = 40.sp,
-                letterSpacing = (-0.8).sp,
-                color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = "Only professors need an account. It ties each classroom " +
-                        "and its join code to you, so nobody else can moderate your " +
-                        "questions.",
-                fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(end = 16.dp)
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 160.dp),
+                verticalArrangement = Arrangement.Top,
+            ) {
+                QuestionMarkIcon(
+                    modifier = Modifier.size(80.dp),
+                    fontSize = 55.sp
+                )
+                Spacer(modifier = Modifier.height(54.dp))
+                Text(
+                    text = "Sign in to create",
+                    fontSize = 40.sp,
+                    letterSpacing = (-0.8).sp,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "a classroom",
+                    fontSize = 40.sp,
+                    letterSpacing = (-0.8).sp,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Only professors need an account. It ties each classroom " +
+                            "and its join code to you, so nobody else can moderate your " +
+                            "questions.",
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(end = 16.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(54.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                onClick = { navController.navigate("professorDashboard") }
+            ) {
+                Text(
+                    text = "Continue with Google",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
+            Spacer( modifier = Modifier.height(20.dp))
         }
-        Spacer(modifier = Modifier.height(38.dp))
-        Button(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            onClick = { navController.navigate("professorDashboard") }
-        ) {
-            Text(
-                text = "Continue with Google",
-                fontSize = 18.sp,
-                modifier = Modifier.padding(6.dp)
-            )
-        }
-        Spacer( modifier = Modifier.height(20.dp))
     }
 }

@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
+import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.CustomSegmentedSwitch
 
 
@@ -65,6 +66,7 @@ fun StudentClassScreen (
     val filtered = questions.filter { !it.isDeleted }
 
     val context = LocalContext.current;
+    val dimensions = AsklyDimensions.current
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -108,27 +110,45 @@ fun StudentClassScreen (
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Inventory2,
-                        contentDescription = "Archive",
-                        tint = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.size(22.dp)
-                    )
-                    Spacer(modifier = Modifier.width(24.dp))
-                    Icon(
-                        imageVector = Icons.Outlined.Settings,
-                        contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.size(22.dp)
-                    )
-                    Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Inventory2,
+                            contentDescription = "Archive",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    IconButton(
+                        onClick = {
+
+                        },
+                        modifier = Modifier.size(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
                 }
             }
+        }
+
+        Column(
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
+        ) {
+            // Content Area
             Column(
-                modifier = Modifier
-                    .padding(top = 8.dp, start = 18.dp)
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.Center
             ) {
                 Row(
@@ -138,22 +158,21 @@ fun StudentClassScreen (
                         text = "Code",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                     Text(
                         text = "  •  ",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                     Text(
                         text = "ASDF",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Mobile Development",
                     style = MaterialTheme.typography.headlineLarge,
@@ -161,180 +180,178 @@ fun StudentClassScreen (
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-        }
 
-        // Content Area
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 28.dp)
-                .padding(top = 32.dp),
-            verticalArrangement = Arrangement.Top,
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                CustomSegmentedSwitch(
-                    items = listOf("All", "Own"),
-                    selectedIndex = selectedIndex,
-                    onItemSelected = { index ->
-                        selectedIndex = index
-                    }
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Button(
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                alpha = 0.2f
-                            )
-                        ),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.background,
-                            contentColor = Color.Black
-                        ),
-                        onClick = { },
-                        contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.FilterList,
-                            contentDescription = "Sort",
-                            tint = MaterialTheme.colorScheme.onBackground,
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(
-                            text = "Newest",
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Button(
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                alpha = 0.2f
-                            )
-                        ),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.background,
-                            contentColor = Color.Black
-                        ),
-                        onClick = { },
-                        contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
-                    ) {
-                        Text(
-                            text = "Select",
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .padding(bottom = 42.dp)
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(top = 32.dp),
+                verticalArrangement = Arrangement.Top,
             ) {
-                items(filtered) { questionList ->
-
-                    var isEditing by remember(questionList.questionId) {
-                        mutableStateOf(false)
-                    }
-                    var editedText by remember(questionList.questionId) {
-                        mutableStateOf(questionList.questionText)
-                    }
-
-                    Surface(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(24.dp),
-                        border = BorderStroke(
-                            1.dp,
-                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
-                        ),
-                        color = MaterialTheme.colorScheme.surface
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    CustomSegmentedSwitch(
+                        items = listOf("All", "Own"),
+                        selectedIndex = selectedIndex,
+                        onItemSelected = { index ->
+                            selectedIndex = index
+                        }
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Column(
-                            modifier = Modifier.padding(8.dp)
+                        Button(
+                            border = BorderStroke(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                    alpha = 0.2f
+                                )
+                            ),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.background,
+                                contentColor = Color.Black
+                            ),
+                            onClick = { },
+                            contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.FilterList,
+                                contentDescription = "Sort",
+                                tint = MaterialTheme.colorScheme.onBackground,
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "Newest",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Button(
+                            border = BorderStroke(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                    alpha = 0.2f
+                                )
+                            ),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.background,
+                                contentColor = Color.Black
+                            ),
+                            onClick = { },
+                            contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
                         ) {
                             Text(
-                                text = questionList.questionText,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(min = 50.dp)
-                                    .padding(vertical = 14.dp)
-                                    .padding(start = 18.dp, end = 18.dp),
-                                fontSize = 18.sp
+                                text = "Select",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
                             )
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(bottom = 42.dp)
+                        .fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(filtered) { questionList ->
+
+                        var isEditing by remember(questionList.questionId) {
+                            mutableStateOf(false)
+                        }
+                        var editedText by remember(questionList.questionId) {
+                            mutableStateOf(questionList.questionText)
+                        }
+
+                        Surface(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(24.dp),
+                            border = BorderStroke(
+                                1.dp,
+                                MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
+                            ),
+                            color = MaterialTheme.colorScheme.surface
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(8.dp)
                             ) {
-                                Button(
-                                    onClick = { },
-                                    colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color.Transparent,
-                                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                                    ),
-                                ) {
-                                    Text(
-                                        text = "0",
-                                        fontSize = 18.sp
-                                    )
-                                    Spacer(Modifier.padding(2.dp))
-                                    Icon(
-                                        imageVector = Icons.Default.ArrowUpward,
-                                        contentDescription = "Upvote",
-                                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                }
+                                Text(
+                                    text = questionList.questionText,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .heightIn(min = 50.dp)
+                                        .padding(vertical = 14.dp)
+                                        .padding(start = 18.dp, end = 18.dp),
+                                    fontSize = 18.sp
+                                )
                                 Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    CompositionLocalProvider(
-                                        LocalMinimumInteractiveComponentEnforcement provides false
+                                    Button(
+                                        onClick = { },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Color.Transparent,
+                                            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                                        ),
                                     ) {
-                                        IconButton(
-                                            onClick = {
-                                                navController.navigate(
-                                                    "studentEdit/${questionList.questionId}"
-                                                )
-                                            },
-                                            modifier = Modifier.size(48.dp)
-                                        ) {
-                                            Icon(
-                                                imageVector = Icons.Default.Edit,
-                                                contentDescription = "Edit",
-                                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                modifier = Modifier.size(24.dp)
-                                            )
-                                        }
+                                        Text(
+                                            text = "0",
+                                            fontSize = 18.sp
+                                        )
+                                        Spacer(Modifier.padding(2.dp))
+                                        Icon(
+                                            imageVector = Icons.Default.ArrowUpward,
+                                            contentDescription = "Upvote",
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
                                     }
-                                    CompositionLocalProvider(
-                                        LocalMinimumInteractiveComponentEnforcement provides false
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically
                                     ) {
-                                        IconButton(
-                                            onClick = {
-                                                asklyViewModel.deleteQuestion(questionList.questionId)
-                                            },
-                                            modifier = Modifier.size(48.dp)
+                                        CompositionLocalProvider(
+                                            LocalMinimumInteractiveComponentEnforcement provides false
                                         ) {
-                                            Icon(
-                                                imageVector = Icons.Default.Delete,
-                                                contentDescription = "Delete",
-                                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                modifier = Modifier.size(24.dp)
-                                            )
+                                            IconButton(
+                                                onClick = {
+                                                    navController.navigate(
+                                                        "studentEdit/${questionList.questionId}"
+                                                    )
+                                                },
+                                                modifier = Modifier.size(48.dp)
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.Edit,
+                                                    contentDescription = "Edit",
+                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    modifier = Modifier.size(24.dp)
+                                                )
+                                            }
+                                        }
+                                        CompositionLocalProvider(
+                                            LocalMinimumInteractiveComponentEnforcement provides false
+                                        ) {
+                                            IconButton(
+                                                onClick = {
+                                                    asklyViewModel.deleteQuestion(questionList.questionId)
+                                                },
+                                                modifier = Modifier.size(48.dp)
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.Delete,
+                                                    contentDescription = "Delete",
+                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    modifier = Modifier.size(24.dp)
+                                                )
+                                            }
                                         }
                                     }
                                 }
@@ -343,73 +360,71 @@ fun StudentClassScreen (
                     }
                 }
             }
-        }
 
 
-        // Bottom Bar
-        Surface(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(24.dp),
-            border = BorderStroke(
-                1.dp,
-                MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
-            ),
-            color = MaterialTheme.colorScheme.surface,
-            shadowElevation = 2.dp
-        ) {
-            Column(
-                modifier = Modifier.padding(8.dp)
+            // Bottom Bar
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
+                border = BorderStroke(
+                    1.dp,
+                    MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
+                ),
+                color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 2.dp
             ) {
-                TextField(
-                    value = questionText,
-                    onValueChange = { newValue ->
-                        if (newValue.length <= maxCharacters) {
-                            questionText = newValue
-                        }
-                    },
-                    placeholder = { Text("Type your question...") },
-                    maxLines = 4,
-                    singleLine = false,
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        disabledContainerColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(min = 80.dp)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 4.dp),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.padding(8.dp)
                 ) {
-                    IconButton(
-                        onClick = {
-                            if (questionText.isNotBlank()) {
-                                asklyViewModel.addQuestion(questionText)
-                                questionText = ""
+                    TextField(
+                        value = questionText,
+                        onValueChange = { newValue ->
+                            if (newValue.length <= maxCharacters) {
+                                questionText = newValue
                             }
-                        }
+                        },
+                        placeholder = { Text("Type your question...") },
+                        maxLines = 4,
+                        singleLine = false,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                            disabledContainerColor = Color.Transparent,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .heightIn(min = 80.dp)
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 4.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.Send,
-                            contentDescription = "Send",
-                            tint = if (questionText.isNotBlank())
-                                MaterialTheme.colorScheme.onSurface
-                            else MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        IconButton(
+                            onClick = {
+                                if (questionText.isNotBlank()) {
+                                    asklyViewModel.addQuestion(questionText)
+                                    questionText = ""
+                                }
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.Send,
+                                contentDescription = "Send",
+                                tint = if (questionText.isNotBlank())
+                                    MaterialTheme.colorScheme.onSurface
+                                else MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(20.dp))
         }
-        Spacer(modifier = Modifier.height(20.dp))
     }
 }
 

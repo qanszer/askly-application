@@ -29,11 +29,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.QuestionMarkIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MenuScreen(navController: NavController) {
+    val dimensions = AsklyDimensions.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -43,7 +46,7 @@ fun MenuScreen(navController: NavController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 24.dp),
+                .padding(vertical = 8.dp, horizontal = 26.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -68,91 +71,89 @@ fun MenuScreen(navController: NavController) {
 
         // Content Area
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-//                .weight(1f)
-                .padding(22.dp)
-                .padding(top = 150.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
         ) {
-            Icon(
-                imageVector = Icons.Outlined.Forum,
-                contentDescription = "Menu Screen Icon",
-                tint = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.size(80.dp)
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = "Ask without",
-                style = MaterialTheme.typography.displayMedium.copy(
-                    letterSpacing = (-0.8).sp
-                ),
-                color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Normal,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = "raising a hand.",
-                style = MaterialTheme.typography.displayMedium.copy(
-                    letterSpacing = (-0.8).sp
-                ),
-                color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = "Submit questions anonymously during a lecture. " +
-                        "Your professor sees the question,\n" +
-                        "but not your name.",
-                fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-        }
-
-        // Bottom Area
-        Button(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            onClick = { navController.navigate("studentDashboard") }
-        ) {
-            Text(
-                text = "I'm a student",
-                fontSize = 18.sp,
-                modifier = Modifier.padding(6.dp)
-            )
-        }
-        Spacer( modifier = Modifier.height(8.dp))
-        Button(
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            border = BorderStroke(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                    alpha = 0.6f
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 180.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Forum,
+                    contentDescription = "Menu Screen Icon",
+                    tint = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.size(80.dp)
                 )
-            ),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                contentColor = MaterialTheme.colorScheme.onBackground
-            ),
-            onClick = { navController.navigate("signIn") }
-        ) {
-            Text(
-                text = "I'm a professor",
-                fontSize = 18.sp,
-                modifier = Modifier.padding(6.dp)
-            )
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = "Ask without",
+                    style = MaterialTheme.typography.displayMedium.copy(
+                        letterSpacing = (-0.8).sp
+                    ),
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Normal,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "raising a hand.",
+                    style = MaterialTheme.typography.displayMedium.copy(
+                        letterSpacing = (-0.8).sp
+                    ),
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Submit questions anonymously during a lecture. " +
+                            "Your professor sees the question,\n" +
+                            "but not your name.",
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(32.dp))
+            }
+
+            // Bottom Area
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                onClick = { navController.navigate("studentDashboard") }
+            ) {
+                Text(
+                    text = "I'm a student",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
+            Spacer( modifier = Modifier.height(8.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                        alpha = 0.6f
+                    )
+                ),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    contentColor = MaterialTheme.colorScheme.onSurface
+                ),
+                onClick = { navController.navigate("signIn") }
+            ) {
+                Text(
+                    text = "I'm a professor",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
+            Spacer( modifier = Modifier.height(20.dp))
         }
-        Spacer( modifier = Modifier.height(20.dp))
     }
 }

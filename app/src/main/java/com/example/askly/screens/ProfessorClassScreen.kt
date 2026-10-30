@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
+import com.example.askly.ui.theme.AsklyDimensions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,6 +52,7 @@ fun ProfessorClassScreen (
     val filtered = questions.filter { !it.isDeleted }
 
     val context = LocalContext.current;
+    val dimensions = AsklyDimensions.current
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -88,7 +90,7 @@ fun ProfessorClassScreen (
                             imageVector = Icons.Default.ArrowBackIosNew,
                             contentDescription = "Back",
                             tint = MaterialTheme.colorScheme.onBackground,
-                            modifier = Modifier.size(14.dp)
+                            modifier = Modifier.size(16.dp)
                         )
                     }
                 }
@@ -109,7 +111,6 @@ fun ProfessorClassScreen (
                             modifier = Modifier.size(22.dp)
                         )
                     }
-                    Spacer(modifier = Modifier.width(4.dp))
                     IconButton(
                         onClick = {
 
@@ -126,10 +127,14 @@ fun ProfessorClassScreen (
                     Spacer(modifier = Modifier.width(4.dp))
                 }
             }
+        }
+
+        // Content Area
+        Column(
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
+        ) {
             Column(
-                modifier = Modifier
-                    .padding(top = 8.dp, start = 18.dp)
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.Center
             ) {
                 Row(
@@ -162,66 +167,62 @@ fun ProfessorClassScreen (
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-        }
-
-        // Content Area
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 28.dp)
-                .padding(top = 42.dp),
-            verticalArrangement = Arrangement.Top,
-        ) {
-            Card (
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary,
-                ),
-                shape = RoundedCornerShape(24.dp),
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 34.dp),
+                verticalArrangement = Arrangement.Top,
             ) {
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = 26.dp, vertical = 22.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                Card (
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary,
+                    ),
+                    shape = RoundedCornerShape(24.dp),
                 ) {
-                    Column {
-                        Text(
-                            text = "JOIN CODE",
-                            fontSize = 14.sp,
-                            letterSpacing = 4.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Text(
-                            text = "ASDF",
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            fontSize = 42.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-
-                        },
-                        modifier = Modifier.size(52.dp),
-                        colors = IconButtonDefaults.iconButtonColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceDim,
-                            contentColor = MaterialTheme.colorScheme.surface
-                        )
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 26.dp, vertical = 18.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.ContentCopy,
-                            contentDescription = "Copy",
-                            tint = MaterialTheme.colorScheme.surface,
-                            modifier = Modifier.size(20.dp)
-                        )
+                        Column {
+                            Text(
+                                text = "JOIN CODE",
+                                fontSize = 14.sp,
+                                letterSpacing = 4.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                text = "ASDF",
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                fontSize = 42.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        IconButton(
+                            onClick = {
+
+                            },
+                            modifier = Modifier.size(52.dp),
+                            colors = IconButtonDefaults.iconButtonColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceDim,
+                                contentColor = MaterialTheme.colorScheme.surface
+                            )
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.ContentCopy,
+                                contentDescription = "Copy",
+                                tint = MaterialTheme.colorScheme.surface,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
                     }
                 }
+
             }
-
+            Spacer(modifier = Modifier.height(20.dp))
         }
-
-        Spacer(modifier = Modifier.height(20.dp))
     }
 }

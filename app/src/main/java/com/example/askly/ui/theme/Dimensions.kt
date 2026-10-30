@@ -11,7 +11,7 @@ data class Dimensions(
     val lg: Dp = 22.dp,
     val xl: Dp = 32.dp,
 
-    val screenPadding: Dp = 22.dp,
+    val screenPadding: Dp = 24.dp,
     val buttonHorizontal: Dp = 12.dp,
     val logoSize: Dp = 80.dp,
     val iconSmall: Dp = 16.dp,
