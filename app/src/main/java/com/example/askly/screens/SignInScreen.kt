@@ -41,16 +41,16 @@ fun SignInScreen (navController: NavController) {
         // Custom Top Bar
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
+                .padding(horizontal = 10.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+//            horizontalArrangement = Arrangement.Absolute.Left
         ) {
             CompositionLocalProvider(
                 LocalMinimumInteractiveComponentEnforcement provides false) {
                 IconButton(
                     onClick = { navController.popBackStack() },
-                    modifier = Modifier.size(48.dp) // Set to whatever total size you want
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.ArrowBackIosNew,
@@ -66,9 +66,9 @@ fun SignInScreen (navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 24.dp)
-                .padding(top = 130.dp),
+//                .weight(1f) // makes the button go to the bottom
+                .padding(horizontal = 28.dp)
+                .padding(top = 150.dp),
             verticalArrangement = Arrangement.Top,
         ) {
             QuestionMarkIcon(
@@ -92,7 +92,7 @@ fun SignInScreen (navController: NavController) {
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                text = "Only professors need an account. It ties each classroom" +
+                text = "Only professors need an account. It ties each classroom " +
                         "and its join code to you, so nobody else can moderate your " +
                         "questions.",
                 fontSize = 18.sp,
@@ -100,8 +100,7 @@ fun SignInScreen (navController: NavController) {
                 modifier = Modifier.padding(end = 16.dp)
             )
         }
-
-        // Bottom Bar
+        Spacer(modifier = Modifier.height(38.dp))
         Button(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
