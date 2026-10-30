@@ -25,6 +25,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -73,12 +74,13 @@ fun SignInScreen (navController: NavController) {
                     .fillMaxWidth()
                     .padding(top = 160.dp),
                 verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 QuestionMarkIcon(
                     modifier = Modifier.size(80.dp),
                     fontSize = 55.sp
                 )
-                Spacer(modifier = Modifier.height(54.dp))
+                Spacer(modifier = Modifier.height(32.dp))
                 Text(
                     text = "Sign in to create",
                     fontSize = 40.sp,
@@ -100,7 +102,7 @@ fun SignInScreen (navController: NavController) {
                             "questions.",
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(end = 16.dp)
+                    textAlign = TextAlign.Center
                 )
             }
             Spacer(modifier = Modifier.height(54.dp))

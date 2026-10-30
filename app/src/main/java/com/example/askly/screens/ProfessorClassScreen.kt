@@ -141,36 +141,25 @@ fun ProfessorClassScreen (
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "Code",
+                        text = "Mobile Development",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = "  •  ",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = "ASDF",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
+                        fontSize = 15.sp
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Mobile Development",
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground
+                    text = "Questions",
+                    style = MaterialTheme.typography.headlineLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
                 )
             }
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 34.dp),
+                    .padding(top = 30.dp),
                 verticalArrangement = Arrangement.Top,
             ) {
                 Card (
@@ -190,8 +179,8 @@ fun ProfessorClassScreen (
                         Column {
                             Text(
                                 text = "JOIN CODE",
-                                fontSize = 14.sp,
-                                letterSpacing = 4.sp,
+                                fontSize = 13.sp,
+                                letterSpacing = 3.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(

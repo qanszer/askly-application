@@ -114,7 +114,7 @@ fun MenuScreen(navController: NavController) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(42.dp))
             }
 
             // Bottom Area
