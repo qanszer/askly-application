@@ -16,14 +16,14 @@ class AsklyFactory (
         if(modelClass.isAssignableFrom(
                 AsklyViewModel::class.java
         )) {
-            @Suppress("UNCHECKED-CAST")
+            @Suppress("UNCHECKED_CAST")
             return AsklyViewModel(repository) as T
         }
 
         if(modelClass.isAssignableFrom(
                 AuthViewModel::class.java
         )) {
-            @Suppress("UNCHECKED-CAST")
+            @Suppress("UNCHECKED_CAST")
             return AuthViewModel(authRepository) as T
         }
 

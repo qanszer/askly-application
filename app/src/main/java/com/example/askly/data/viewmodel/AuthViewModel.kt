@@ -13,7 +13,7 @@ class AuthViewModel (
         onResult: (Boolean, String) -> Unit
     ) {
         repository.registrationFunc(email, password) { success, result ->
-            onResult(success)
+            onResult(success, result)
         }
     }
 
@@ -23,7 +23,19 @@ class AuthViewModel (
         onResult: (Boolean, String) -> Unit
     ) {
         repository.loginFunc(email, password) { success, result ->
-            onResult(success)
+            onResult(success, result)
         }
+    }
+
+    fun logout() {
+        repository.logoutFunc()
+    }
+
+    fun isLogin(): Boolean {
+        return repository.isLogin()
+    }
+
+    fun getLoginUser(): String? {
+        return repository.getLoginUser()
     }
 }

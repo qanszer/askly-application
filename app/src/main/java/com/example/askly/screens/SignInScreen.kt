@@ -1,5 +1,6 @@
 package com.example.askly.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -72,6 +73,7 @@ fun SignInScreen (navController: NavController) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .weight(1f)
                     .padding(top = 160.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -82,7 +84,7 @@ fun SignInScreen (navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 Text(
-                    text = "Sign in to create",
+                    text = "Sign up to create",
                     fontSize = 40.sp,
                     letterSpacing = (-0.8).sp,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -112,10 +114,31 @@ fun SignInScreen (navController: NavController) {
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary
                 ),
-                onClick = { navController.navigate("professorDashboard") }
+                onClick = { navController.navigate("login") }
             ) {
                 Text(
                     text = "Continue with Google",
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
+            Spacer( modifier = Modifier.height(8.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                        alpha = 0.6f
+                    )
+                ),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    contentColor = MaterialTheme.colorScheme.onSurface
+                ),
+                onClick = { navController.navigate("login") }
+            ) {
+                Text(
+                    text = "Log in with account",
                     fontSize = 18.sp,
                     modifier = Modifier.padding(6.dp)
                 )

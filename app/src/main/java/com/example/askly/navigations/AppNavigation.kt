@@ -19,10 +19,13 @@ import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.data.viewmodel.AuthViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen
+import com.example.askly.screens.LoginScreen
 import com.example.askly.screens.MenuScreen
 import com.example.askly.screens.ProfessorClassScreen
 import com.example.askly.screens.ProfessorDashboardScreen
+import com.example.askly.screens.RegisterScreen
 import com.example.askly.screens.SignInScreen
+import com.example.askly.screens.SplashScreen
 import com.example.askly.screens.StudentClassScreen
 import com.example.askly.screens.StudentDashboardScreen
 import com.example.askly.screens.StudentEditScreen
@@ -55,8 +58,8 @@ fun AppNavigation () {
         composable("login") {
             LoginScreen(navrouting, authViewModel)
         }
-        composable("signup") {
-            SignupScreen(navrouting, authViewModel)
+        composable("register") {
+            RegisterScreen(navrouting, authViewModel)
         }
         composable("splash") {
             SplashScreen(navrouting, authViewModel)

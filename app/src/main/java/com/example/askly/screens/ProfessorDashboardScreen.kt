@@ -77,7 +77,7 @@ fun ProfessorDashboardScreen (
                     LocalMinimumInteractiveComponentEnforcement provides false
                 ) {
                     IconButton(
-                        onClick = { navController.popBackStack() },
+                        onClick = { navController.navigate("menu") },
                         modifier = Modifier.size(48.dp)
                     ) {
                         Icon(
