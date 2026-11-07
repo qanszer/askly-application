@@ -1,27 +1,17 @@
 package com.example.askly.ui.theme
 
-import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 private val DarkColorScheme = darkColorScheme(
     background = DarkBackground,
@@ -30,6 +20,7 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = DarkCardForeground,
     primary = DarkPrimary,
     onPrimary = DarkPrimaryForeground,
+    surfaceDim = LightMuted,
     surfaceVariant = DarkMuted,
     onSurfaceVariant = DarkMutedForeground,
     secondary = DarkAccent,
@@ -44,6 +35,7 @@ private val LightColorScheme = lightColorScheme(
     surface = LightCard,
     onSurface = LightCardForeground,
     primary = LightPrimary,
+    surfaceDim = DarkMuted,
     onPrimary = LightPrimaryForeground,
     surfaceVariant = LightMuted,
     onSurfaceVariant = LightMutedForeground,
@@ -52,6 +44,11 @@ private val LightColorScheme = lightColorScheme(
     outline = LightBorder,
     outlineVariant = LightRing
 )
+
+object AsklyDimensions {
+    val current: Dimensions
+        @Composable get() = LocalDimensions.current
+}
 
 @Composable
 fun AsklyTheme(
@@ -70,9 +67,12 @@ fun AsklyTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    CompositionLocalProvider(LocalDimensions provides remember { Dimensions() }) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography
+        ) {
+            ProvideTextStyle(value = Typography.bodyLarge, content = content)
+        }
+    }
 }

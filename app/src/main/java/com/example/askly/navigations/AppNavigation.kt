@@ -13,14 +13,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.askly.data.AsklyFactory
-import com.example.askly.data.AsklyRepository
+import com.example.askly.data.repository.AsklyRepository
+import com.example.askly.data.repository.AuthRepository
 import com.example.askly.data.viewmodel.AsklyViewModel
+import com.example.askly.data.viewmodel.AuthViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen
+import com.example.askly.screens.LoginScreen
 import com.example.askly.screens.MenuScreen
 import com.example.askly.screens.ProfessorClassScreen
 import com.example.askly.screens.ProfessorDashboardScreen
+import com.example.askly.screens.RegisterScreen
 import com.example.askly.screens.SignInScreen
+import com.example.askly.screens.SplashScreen
 import com.example.askly.screens.StudentClassScreen
 import com.example.askly.screens.StudentDashboardScreen
 import com.example.askly.screens.StudentEditScreen
@@ -29,13 +34,19 @@ import com.example.askly.screens.StudentEditScreen
 fun AppNavigation () {
     val navrouting = rememberNavController()
     val repository = AsklyRepository()
+    val authrepo = AuthRepository()
+
     val asklyViewModel : AsklyViewModel = viewModel(
-        factory = AsklyFactory(repository)
+        factory = AsklyFactory(repository, authrepo)
+    )
+
+    val authViewModel : AuthViewModel = viewModel(
+        factory = AsklyFactory(repository, authrepo)
     )
 
     NavHost(
         navController = navrouting,
-        startDestination = "menu",
+        startDestination = "splash",
         enterTransition = { fadeIn(animationSpec = tween(0)) },
         exitTransition = { fadeOut(animationSpec = tween(0)) },
         popEnterTransition = { fadeIn(animationSpec = tween(0)) },
@@ -44,6 +55,15 @@ fun AppNavigation () {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
+        composable("login") {
+            LoginScreen(navrouting, authViewModel)
+        }
+        composable("register") {
+            RegisterScreen(navrouting, authViewModel)
+        }
+        composable("splash") {
+            SplashScreen(navrouting, authViewModel)
+        }
         composable("menu") {
             MenuScreen(navrouting)
         }
@@ -60,7 +80,7 @@ fun AppNavigation () {
         }
         composable("studentEdit/{questionId}") {
                 backStackEntry ->
-            val id = backStackEntry.arguments
+                val id = backStackEntry.arguments
                 ?.getString("questionId") ?: ""
 
             StudentEditScreen(id, navrouting, asklyViewModel)
@@ -71,13 +91,13 @@ fun AppNavigation () {
             SignInScreen(navrouting)
         }
         composable("professorDashboard") {
-            ProfessorDashboardScreen(navrouting)
+            ProfessorDashboardScreen(navrouting, asklyViewModel)
         }
         composable("professorCreate") {
             CreateClassroomScreen(navrouting)
         }
         composable("professorClass") {
-            ProfessorClassScreen(navrouting)
+            ProfessorClassScreen(navrouting, asklyViewModel)
         }
     }
 }

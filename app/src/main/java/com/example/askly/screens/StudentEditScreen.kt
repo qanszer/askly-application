@@ -42,10 +42,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
-import java.util.Collections.emptyList
+import com.example.askly.ui.theme.AsklyDimensions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,6 +53,7 @@ fun StudentEditScreen(
     navController: NavController,
     asklyViewModel: AsklyViewModel
 ) {
+    val dimensions = AsklyDimensions.current
     val context = LocalContext.current;
 
     val questions = asklyViewModel.questions.value
@@ -105,17 +105,21 @@ fun StudentEditScreen(
                     }
                 }
             }
+        }
+
+        // Content Area
+        Column(
+            modifier = Modifier.padding(horizontal = dimensions.screenPadding)
+        ) {
             Column(
-                modifier = Modifier
-                    .padding(top = 8.dp, start = 18.dp)
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = "Asked 1m ago",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 15.sp
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -126,7 +130,6 @@ fun StudentEditScreen(
                 )
             }
 
-            // Content Area
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -136,7 +139,6 @@ fun StudentEditScreen(
             ) {
                 Surface(
                     modifier = Modifier
-                        .padding(horizontal = 18.dp)
                         .fillMaxWidth(),
                     shape = RoundedCornerShape(24.dp),
                     border = BorderStroke(
@@ -183,15 +185,14 @@ fun StudentEditScreen(
                     text = "You can edit at anytime. Edits stay anonymous " +
                             "and keep their upvotes",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(vertical = 14.dp, horizontal = 24.dp)
+                    modifier = Modifier.padding(vertical = 14.dp, horizontal = 24.dp),
+                    fontSize = 14.sp
                 )
             }
 
             // Bottom Bar
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 18.dp),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -199,13 +200,13 @@ fun StudentEditScreen(
                     border = BorderStroke(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                            alpha = 0.2f
+                            alpha = 0.4f
                         )
                     ),
-                    modifier = Modifier.weight(0.8f),
+                    modifier = Modifier.weight(0.9f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.background,
-                        contentColor = MaterialTheme.colorScheme.onBackground
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        contentColor = MaterialTheme.colorScheme.onSurface
                     ),
                     onClick = { navController.popBackStack() }
                 ) {
@@ -220,7 +221,7 @@ fun StudentEditScreen(
                         containerColor = MaterialTheme.colorScheme.secondary,
                         contentColor = MaterialTheme.colorScheme.onSecondary
                     ),
-                    modifier = Modifier.weight(1.7f),
+                    modifier = Modifier.weight(1.6f),
                     onClick = {
                         asklyViewModel.updateQuestion(
                             id,

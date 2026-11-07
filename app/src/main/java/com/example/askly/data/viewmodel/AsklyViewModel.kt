@@ -1,15 +1,15 @@
 package com.example.askly.data.viewmodel
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.askly.data.AsklyRepository
 import com.example.askly.data.model.ClassroomModel
 import com.example.askly.data.model.QuestionModel
+import com.example.askly.data.repository.AsklyRepository
 import kotlinx.coroutines.launch
-import androidx.compose.runtime.State
 
 class AsklyViewModel(
     private val asklyRepository: AsklyRepository
