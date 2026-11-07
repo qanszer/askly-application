@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.askly.data.AsklyFactory
-import com.example.askly.data.AsklyRepository
+import com.example.askly.data.repository.AsklyRepository
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.screens.CreateClassroomScreen
 import com.example.askly.screens.JoinClassroomScreen

@@ -2,8 +2,8 @@ package com.example.askly.data
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.askly.data.repository.AsklyRepository
 import com.example.askly.data.viewmodel.AsklyViewModel
-import kotlin.jvm.java
 
 class AsklyFactory (
     private val repository: AsklyRepository
