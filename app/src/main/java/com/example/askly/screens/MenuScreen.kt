@@ -108,7 +108,7 @@ fun MenuScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = "Submit questions anonymously during a lecture. " +
-                            "Your professor sees the question,\n" +
+                            "Your professor sees the question," +
                             "but not your name.",
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
