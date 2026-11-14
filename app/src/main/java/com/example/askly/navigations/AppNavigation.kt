@@ -65,7 +65,7 @@ fun AppNavigation () {
             SplashScreen(navrouting, authViewModel)
         }
         composable("menu") {
-            MenuScreen(navrouting)
+            MenuScreen(navrouting, authViewModel)
         }
 
 //      Student Screens

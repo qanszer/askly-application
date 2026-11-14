@@ -29,12 +29,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.askly.data.viewmodel.AuthViewModel
 import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.QuestionMarkIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MenuScreen(navController: NavController) {
+fun MenuScreen(
+    navController: NavController,
+    viewModel: AuthViewModel
+) {
     val dimensions = AsklyDimensions.current
 
     Column(
@@ -145,7 +149,13 @@ fun MenuScreen(navController: NavController) {
                     containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.onSurface
                 ),
-                onClick = { navController.navigate("signIn") }
+                onClick = {
+                    if (viewModel.isLogin()) {
+                        navController.navigate("professorDashboard")
+                    } else {
+                        navController.navigate("signIn")
+                    }
+                }
             ) {
                 Text(
                     text = "I'm a professor",
