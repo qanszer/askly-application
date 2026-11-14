@@ -1,6 +1,5 @@
 package com.example.askly.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -139,14 +138,14 @@ fun ProfessorDashboardScreen (
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp
                 )
-                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Classrooms",
-                    style = MaterialTheme.typography.headlineLarge,
+                    fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
+            Spacer(modifier = Modifier.height(8.dp))
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -161,18 +160,15 @@ fun ProfessorDashboardScreen (
                 ) {
                     // Sort Button
                     Button(
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                alpha = 0.2f
-                            )
-                        ),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.background,
+                            containerColor = MaterialTheme.colorScheme.surface,
                             contentColor = Color.Black
                         ),
                         onClick = {  },
-                        contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp)
+                        contentPadding = PaddingValues(vertical = 0.dp, horizontal = 20.dp),
+                        elevation = ButtonDefaults.buttonElevation(
+                            defaultElevation = 2.dp
+                        )
                     ) {
                         Icon(
                             imageVector = Icons.Default.FilterList,
@@ -183,12 +179,12 @@ fun ProfessorDashboardScreen (
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = "Newest",
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.Medium,
                         )
                     }
                     Text(
-                        text = "1 Total",
+                        text = "2 classrooms",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 14.sp
                     )
@@ -214,8 +210,9 @@ fun ProfessorDashboardScreen (
                                 navController.navigate("professorClass")
                             },
                             shape = RoundedCornerShape(24.dp),
-                            border = BorderStroke(1.dp,
-                                MaterialTheme.colorScheme.onSurfaceVariant.copy( alpha = 0.2f )),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 2.dp
+                            ),
                         ) {
                             Row(
                                 modifier = Modifier
@@ -227,13 +224,14 @@ fun ProfessorDashboardScreen (
                                 Column {
                                     Text(
                                         text = classList.classroomName,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.ExtraBold,
+                                        fontSize = 16.sp,
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
                                         text = "Sir Amado Sapit",
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        fontSize = 14.sp
                                     )
                                 }
                                 Text(
@@ -254,7 +252,10 @@ fun ProfessorDashboardScreen (
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary
                 ),
-                onClick = { navController.navigate("professorCreate") }
+                onClick = { navController.navigate("professorCreate") },
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 5.dp
+                )
             ) {
                 Text(
                     text = "+   New classroom",
