@@ -43,13 +43,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.ClassroomIcon
+import com.example.askly.ui.theme.LocalAsklyTypography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -139,14 +138,12 @@ fun StudentDashboardScreen (
                 Text(
                     text = "Student",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 15.sp
+                    style = LocalAsklyTypography.current.label,
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Classrooms",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = LocalAsklyTypography.current.pageTitle,
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -188,14 +185,13 @@ fun StudentDashboardScreen (
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = "Newest",
-                            style = MaterialTheme.typography.bodySmall,
-                            fontWeight = FontWeight.Medium,
+                            style = LocalAsklyTypography.current.captionMedium,
                         )
                     }
                     Text(
                         text = "1 Total",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 14.sp
+                        style = LocalAsklyTypography.current.secondary,
                     )
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -238,18 +234,17 @@ fun StudentDashboardScreen (
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     ClassroomIcon()
-                                    Spacer( modifier = Modifier.width(12.dp))
-                                    Column {
+                                    Spacer( modifier = Modifier.width(18.dp))
+                                    Column ( verticalArrangement = Arrangement.spacedBy(4.dp) ) {
                                         Text(
                                             text = classList.classroomName,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 16.sp,
+                                            style = LocalAsklyTypography.current.cardTitle,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
                                             text = "Amado Sapit",
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            fontSize = 13.sp
+                                            style = LocalAsklyTypography.current.footnote,
                                         )
                                         Row(
                                             verticalAlignment = Alignment.CenterVertically
@@ -264,7 +259,7 @@ fun StudentDashboardScreen (
                                             Text(
                                                 text = "0 questions",
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                fontSize = 13.sp
+                                                style = LocalAsklyTypography.current.caption,
                                             )
                                         }
                                     }
@@ -304,7 +299,7 @@ fun StudentDashboardScreen (
                     Spacer( modifier = Modifier.height(6.dp))
                     Text(
                         text = "Join a classroom",
-                        fontSize = 16.sp,
+                        style = LocalAsklyTypography.current.label,
                         modifier = Modifier.padding(8.dp)
                     )
                 }

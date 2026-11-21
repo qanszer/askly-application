@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun QuestionMarkIcon(modifier: Modifier = Modifier, fontSize: TextUnit = 20.sp) {
+fun QuestionMarkIcon(modifier: Modifier = Modifier, fontSize: TextUnit = 18.sp) {
     Box(
         modifier = modifier
             .size(30.dp)

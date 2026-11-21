@@ -50,6 +50,7 @@ import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.ui.theme.AsklyDimensions
 import com.example.askly.ui.theme.ClassroomIcon
+import com.example.askly.ui.theme.LocalAsklyTypography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -188,14 +189,13 @@ fun ProfessorDashboardScreen (
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = "Newest",
-                            style = MaterialTheme.typography.bodySmall,
-                            fontWeight = FontWeight.Medium,
+                            style = LocalAsklyTypography.current.captionMedium,
                         )
                     }
                     Text(
                         text = "2 classrooms",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 14.sp
+                        style = LocalAsklyTypography.current.secondary,
                     )
                 }
                 Spacer(modifier = Modifier.height(32.dp))
@@ -220,7 +220,7 @@ fun ProfessorDashboardScreen (
                             },
                             shape = RoundedCornerShape(22.dp),
                             border = BorderStroke(1.dp,
-                                MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                MaterialTheme.colorScheme.outline.copy(
                                     alpha = 0.2f
                                 )),
                             elevation = CardDefaults.cardElevation(
@@ -238,18 +238,17 @@ fun ProfessorDashboardScreen (
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     ClassroomIcon()
-                                    Spacer( modifier = Modifier.width(12.dp))
-                                    Column {
+                                    Spacer( modifier = Modifier.width(18.dp))
+                                    Column ( verticalArrangement = Arrangement.spacedBy(4.dp) ) {
                                         Text(
                                             text = classList.classroomName,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 16.sp,
+                                            style = LocalAsklyTypography.current.cardTitle,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
                                             text = "Amado Sapit",
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            fontSize = 13.sp
+                                            style = LocalAsklyTypography.current.footnote,
                                         )
                                         Row(
                                             verticalAlignment = Alignment.CenterVertically
@@ -264,7 +263,7 @@ fun ProfessorDashboardScreen (
                                             Text(
                                                 text = "0 questions",
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                fontSize = 13.sp
+                                                style = LocalAsklyTypography.current.caption,
                                             )
                                         }
                                     }
@@ -304,7 +303,7 @@ fun ProfessorDashboardScreen (
                     Spacer( modifier = Modifier.height(6.dp))
                     Text(
                         text = "New classroom",
-                        fontSize = 16.sp,
+                        style = LocalAsklyTypography.current.label,
                         modifier = Modifier.padding(8.dp)
                     )
                 }

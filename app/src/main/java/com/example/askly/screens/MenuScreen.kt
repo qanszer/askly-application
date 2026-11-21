@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AuthViewModel
 import com.example.askly.ui.theme.AsklyDimensions
+import com.example.askly.ui.theme.LocalAsklyTypography
 import com.example.askly.ui.theme.QuestionMarkIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,8 +62,7 @@ fun MenuScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Askly",
-                    fontWeight = FontWeight.ExtraBold,
-                    style = MaterialTheme.typography.titleLarge
+                    style = LocalAsklyTypography.current.title
                 )
             }
             Icon(
@@ -80,7 +80,7 @@ fun MenuScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 180.dp),
+                    .padding(top = 160.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -93,7 +93,7 @@ fun MenuScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "Ask without",
-                    style = MaterialTheme.typography.displayMedium.copy(
+                    style = LocalAsklyTypography.current.hero.copy(
                         letterSpacing = (-0.8).sp
                     ),
                     color = MaterialTheme.colorScheme.onBackground,
@@ -102,7 +102,7 @@ fun MenuScreen(
                 )
                 Text(
                     text = "raising a hand.",
-                    style = MaterialTheme.typography.displayMedium.copy(
+                    style = LocalAsklyTypography.current.hero.copy(
                         letterSpacing = (-0.8).sp
                     ),
                     color = MaterialTheme.colorScheme.onBackground,
@@ -112,13 +112,13 @@ fun MenuScreen(
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = "Submit questions anonymously during a lecture. " +
-                            "Your professor sees the question," +
+                            "Your professor sees the question, " +
                             "but not your name.",
-                    fontSize = 18.sp,
+                    style = LocalAsklyTypography.current.lead,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(42.dp))
+                Spacer(modifier = Modifier.height(62.dp))
             }
 
             // Bottom Area
@@ -132,7 +132,7 @@ fun MenuScreen(
             ) {
                 Text(
                     text = "I'm a student",
-                    fontSize = 18.sp,
+                    style = LocalAsklyTypography.current.label,
                     modifier = Modifier.padding(6.dp)
                 )
             }
@@ -159,7 +159,7 @@ fun MenuScreen(
             ) {
                 Text(
                     text = "I'm a professor",
-                    fontSize = 18.sp,
+                    style = LocalAsklyTypography.current.label,
                     modifier = Modifier.padding(6.dp)
                 )
             }

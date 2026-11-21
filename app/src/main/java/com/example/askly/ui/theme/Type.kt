@@ -18,9 +18,12 @@ val PlusJakartaSans = FontFamily(
     Font(R.font.plus_jakarta_sans_bold,     FontWeight.Bold),
 )
 
-enum class FontSizeSetting(val scale: Float) { Small(0.875f), Medium(1f), Large(1.15625f) }
+enum class FontSizeSetting(val scale: Float) {
+    Small(0.875f),
+    Medium(1f),
+    Large(1.15625f)
+}
 
-/** Raw size scale (sp at Medium). Change one value → every style using it changes. */
 object AsklyFontSize {
     const val micro = 10f      // 0.625rem
     const val tiny = 11f       // 0.6875rem
@@ -49,6 +52,7 @@ data class AsklyTypography(
     val screenTitle: TextStyle,   // Join/create title, large code tiles
     val pageTitle: TextStyle,     // Page header title
     val headline: TextStyle,      // Empty-state title, small code tiles
+    val fontPreview: TextStyle,   // Settings "Aa" font-size preview
     val sectionTitle: TextStyle,  // Section headers, sheet titles, stat numbers
     val title: TextStyle,         // Dialog / empty card titles
     val cardTitle: TextStyle,     // Class card title
@@ -56,14 +60,18 @@ data class AsklyTypography(
     val lead: TextStyle,          // Menu subtitle
     val body: TextStyle,          // Question text, paragraphs
     val bodyMedium: TextStyle,    // Buttons, list row titles
+    val aboutTitle: TextStyle,    // Settings about card title
     val label: TextStyle,         // Form labels, text buttons
     val secondary: TextStyle,     // Subtitles, descriptions
     val count: TextStyle,         // Vote / question counts (tabular)
     val chip: TextStyle,          // Filter chips, segmented control
+    val codeBadge: TextStyle,     // 2×2 code badge on class cards
     val footnote: TextStyle,      // Card subtitles
     val caption: TextStyle,       // Meta, helper, timestamps
     val captionMedium: TextStyle, // Small pill buttons
+    val countPill: TextStyle,     // Role card count pill (tabular)
     val badge: TextStyle,         // Status chips
+    val statLabel: TextStyle,     // Professor room stat labels
     val eyebrow: TextStyle,       // UPPERCASE eyebrow labels
     val micro: TextStyle,         // UPPERCASE micro labels
 )
@@ -72,9 +80,9 @@ fun asklyTypography(setting: FontSizeSetting = FontSizeSetting.Medium): AsklyTyp
     val s = setting.scale
     fun style(
         size: Float,
-        lineHeight: Float,                 // multiplier of size
+        lineHeight: Float,  // multiplier of size
         weight: FontWeight = FontWeight.Normal,
-        tracking: Float = 0f,              // em
+        tracking: Float = 0f,  // em
         tabular: Boolean = false,
     ) = TextStyle(
         fontFamily = PlusJakartaSans,
@@ -84,7 +92,7 @@ fun asklyTypography(setting: FontSizeSetting = FontSizeSetting.Medium): AsklyTyp
         letterSpacing = tracking.em,
         fontFeatureSettings = if (tabular) "tnum" else null,
     )
-    val heading = -0.025f // all bold headings use tight tracking
+    val heading = -0.025f
     val F = AsklyFontSize
     return AsklyTypography(
         hero          = style(F.hero, 1.05f, FontWeight.Bold, -0.03f),
@@ -93,6 +101,7 @@ fun asklyTypography(setting: FontSizeSetting = FontSizeSetting.Medium): AsklyTyp
         screenTitle   = style(F.display3, 1.25f, FontWeight.Bold, heading),
         pageTitle     = style(F.headline, 1.25f, FontWeight.Bold, heading),
         headline      = style(F.title1, 1.333f, FontWeight.Bold, heading),
+        fontPreview   = style(F.title1, 1.333f),
         sectionTitle  = style(F.title2, 1.25f, FontWeight.Bold, heading),
         title         = style(F.title3, 1.555f, FontWeight.Bold, heading),
         cardTitle     = style(F.bodyLarge, 1.375f, FontWeight.Bold, heading),
@@ -100,14 +109,18 @@ fun asklyTypography(setting: FontSizeSetting = FontSizeSetting.Medium): AsklyTyp
         lead          = style(F.lead, 1.625f),
         body          = style(F.body, 1.625f),
         bodyMedium    = style(F.body, 1.5f, FontWeight.Medium),
+        aboutTitle    = style(F.small, 1.428f, FontWeight.Bold, heading),
         label         = style(F.small, 1.428f, FontWeight.Medium),
         secondary     = style(F.small, 1.428f),
         count         = style(F.small, 1.428f, FontWeight.SemiBold, tabular = true),
         chip          = style(F.footnote, 1.5f, FontWeight.Medium),
+        codeBadge     = style(F.footnote, 1.0f, FontWeight.Bold, heading),
         footnote      = style(F.footnote, 1.5f),
         caption       = style(F.caption, 1.333f),
         captionMedium = style(F.caption, 1.333f, FontWeight.Medium),
+        countPill     = style(F.caption, 1.333f, FontWeight.SemiBold, tabular = true),
         badge         = style(F.tiny, 1.5f, FontWeight.SemiBold),
+        statLabel     = style(F.tiny, 1.5f, FontWeight.Medium),
         eyebrow       = style(F.tiny, 1.5f, FontWeight.SemiBold, 0.2f),
         micro         = style(F.micro, 1.5f, FontWeight.SemiBold, 0.15f),
     )

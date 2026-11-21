@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.ui.theme.AsklyDimensions
+import com.example.askly.ui.theme.LocalAsklyTypography
 import com.example.askly.ui.theme.QuestionMarkIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -85,14 +86,14 @@ fun SignInScreen (navController: NavController) {
                 Spacer(modifier = Modifier.height(32.dp))
                 Text(
                     text = "Sign up to create",
-                    fontSize = 40.sp,
+                    style = LocalAsklyTypography.current.signInTitle,
                     letterSpacing = (-0.8).sp,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = "a classroom",
-                    fontSize = 40.sp,
+                    style = LocalAsklyTypography.current.signInTitle,
                     letterSpacing = (-0.8).sp,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontWeight = FontWeight.Bold,
@@ -102,7 +103,7 @@ fun SignInScreen (navController: NavController) {
                     text = "Only professors need an account. It ties each classroom " +
                             "and its join code to you, so nobody else can moderate your " +
                             "questions.",
-                    fontSize = 18.sp,
+                    style = LocalAsklyTypography.current.body,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
@@ -118,7 +119,7 @@ fun SignInScreen (navController: NavController) {
             ) {
                 Text(
                     text = "Continue with Google",
-                    fontSize = 18.sp,
+                    style = LocalAsklyTypography.current.bodyMedium,
                     modifier = Modifier.padding(6.dp)
                 )
             }
