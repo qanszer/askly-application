@@ -19,8 +19,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.outlined.CheckBox
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -45,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.askly.data.viewmodel.AsklyViewModel
 import com.example.askly.ui.theme.AsklyDimensions
+import com.example.askly.ui.theme.ClassroomIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -98,7 +100,7 @@ fun ProfessorDashboardScreen (
                         modifier = Modifier.size(48.dp)
                     ) {
                         Icon(
-                            imageVector = Icons.Default.CheckBoxOutlineBlank,
+                            imageVector = Icons.Outlined.CheckBox,
                             contentDescription = "Select",
                             tint = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier.size(22.dp)
@@ -209,35 +211,37 @@ fun ProfessorDashboardScreen (
                             ) {
                                 navController.navigate("professorClass")
                             },
-                            shape = RoundedCornerShape(24.dp),
+                            shape = RoundedCornerShape(22.dp),
                             elevation = CardDefaults.cardElevation(
                                 defaultElevation = 2.dp
                             ),
                         ) {
                             Row(
                                 modifier = Modifier
-                                    .padding(horizontal = 26.dp, vertical = 32.dp)
+                                    .padding(horizontal = 18.dp, vertical = 22.dp)
                                     .fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
+                                ClassroomIcon()
                                 Column {
                                     Text(
                                         text = classList.classroomName,
-                                        fontWeight = FontWeight.ExtraBold,
+                                        fontWeight = FontWeight.Bold,
                                         fontSize = 16.sp,
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Sir Amado Sapit",
+                                        text = "Amado Sapit",
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         fontSize = 14.sp
                                     )
                                 }
-                                Text(
-                                    text = classList.joinCode,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp
+                                Icon(
+                                    imageVector = Icons.Default.ChevronRight,
+                                    contentDescription = "Sort",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(20.dp)
                                 )
                             }
                         }
